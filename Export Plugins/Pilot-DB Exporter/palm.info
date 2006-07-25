@@ -1,0 +1,8 @@
+
+field "Title" string
+field "Authors" string
+field "Publisher" string
+field "Genre" string
+field "Publish Date" string
+
+option read-only "on"
