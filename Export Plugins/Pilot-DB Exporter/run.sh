@@ -1,6 +1,6 @@
 #!/bin/bash
 
-/usr/bin/ruby xml2csv.rb /tmp/books-export/books-export.xml > /tmp/books-export/books.csv
+# /usr/bin/ruby xml2csv.rb /tmp/books-export/books-export.xml > /tmp/books-export/books.csv
 
 echo title \"$1\" > /tmp/books-export/palm.info
 cat ./palm.info >> /tmp/books-export/palm.info
