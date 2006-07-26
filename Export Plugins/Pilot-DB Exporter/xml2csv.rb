@@ -14,7 +14,9 @@ listxml.elements().each("/exportData/Book") do |book_element|
 	publisher = ""
 	genre = ""
 	publish_date = ""
-	
+	format = ""
+	edition = ""
+	series = ""
 
 	book_element.elements().each("field") do |field_element|
 		att_name = field_element.attributes["name"]
@@ -37,9 +39,15 @@ listxml.elements().each("/exportData/Book") do |book_element|
 			genre = value
 		elsif (att_name == "publishDate")
 			publish_date = value
+		elsif (att_name == "format")
+			format = value
+		elsif (att_name == "edition")
+			edition = value
+		elsif (att_name == "series")
+			series = value
 		end
 	end
 
-	print("\"" + title + "\",\"" + authors + "\",\"", publisher + "\",\"" + genre + "\",\"" + publish_date + "\"\n")
+	print("\"" + title + "\",\"" + authors + "\",\"", publisher + "\",\"" + genre + "\",\"" + publish_date + "\",\"" + format + "\",\"" + edition + "\",\"" + series + "\"\n")
 	
 end
