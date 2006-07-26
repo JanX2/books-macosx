@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "WebKit/WebKit.h"
 
 @implementation AppDelegate
 
@@ -59,6 +60,26 @@
 	[task launch];
 	[task waitUntilExit];
 	
+	NSString * htmlPath = [[NSBundle mainBundle] pathForResource:@"index" ofType:@"html"];
+	
+	[[webView mainFrame] loadData:[NSData dataWithContentsOfFile:htmlPath] MIMEType:@"text/html" textEncodingName:@"utf-8"
+		baseURL:[NSURL URLWithString:[htmlPath stringByDeletingLastPathComponent]]];
+	
+	[webView setResourceLoadDelegate:self];
+	
+	[webViewWindow makeKeyAndOrderFront:self];
+}
+
+- (NSURLRequest *) webView: (WebView *) sender resource: (id) identifier willSendRequest: (NSURLRequest *) request 
+	redirectResponse: (NSURLResponse *) redirectResponse fromDataSource: (WebDataSource *) dataSource
+{
+	[[NSWorkspace sharedWorkspace] openURL:[request URL]];
+	
+	return nil;
+}
+
+- (void)windowWillClose:(NSNotification *)aNotification
+{	
 	[[NSApplication sharedApplication] terminate:nil];
 }
 

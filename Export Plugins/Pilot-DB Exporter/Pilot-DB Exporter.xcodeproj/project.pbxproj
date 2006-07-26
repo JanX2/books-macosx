@@ -15,6 +15,8 @@
 		38258E410A758F86009FB30C /* intel in Resources */ = {isa = PBXBuildFile; fileRef = 38258E3E0A758F86009FB30C /* intel */; };
 		38258E430A758FFD009FB30C /* palm.info in Resources */ = {isa = PBXBuildFile; fileRef = 38258E420A758FFD009FB30C /* palm.info */; };
 		38258E870A75A496009FB30C /* ppc in Resources */ = {isa = PBXBuildFile; fileRef = 38258E840A75A496009FB30C /* ppc */; };
+		38E2806E0A76E7E6004B379B /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 38E2806D0A76E7E6004B379B /* index.html */; };
+		38E2819C0A76E944004B379B /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E2819B0A76E944004B379B /* WebKit.framework */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -39,6 +41,8 @@
 		38258E3E0A758F86009FB30C /* intel */ = {isa = PBXFileReference; lastKnownFileType = folder; path = intel; sourceTree = "<group>"; };
 		38258E420A758FFD009FB30C /* palm.info */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = palm.info; sourceTree = "<group>"; };
 		38258E840A75A496009FB30C /* ppc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ppc; sourceTree = "<group>"; };
+		38E2806D0A76E7E6004B379B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		38E2819B0A76E944004B379B /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Pilot-DB Exporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pilot-DB Exporter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -49,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				38E2819C0A76E944004B379B /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +72,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38E2819B0A76E944004B379B /* WebKit.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -124,6 +130,7 @@
 				38258E420A758FFD009FB30C /* palm.info */,
 				38258E3E0A758F86009FB30C /* intel */,
 				38258E840A75A496009FB30C /* ppc */,
+				38E2806D0A76E7E6004B379B /* index.html */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -187,6 +194,7 @@
 				38258E410A758F86009FB30C /* intel in Resources */,
 				38258E430A758FFD009FB30C /* palm.info in Resources */,
 				38258E870A75A496009FB30C /* ppc in Resources */,
+				38E2806E0A76E7E6004B379B /* index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
