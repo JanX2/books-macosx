@@ -264,8 +264,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>12</integer>
-									<integer>11</integer>
+									<integer>2</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -319,35 +319,30 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>38B60AD10A8E7CA60047F5C9</string>
+										<string>389A01520A8E85F700181B62</string>
 										<key>history</key>
 										<array>
 											<string>3864ACF80A8E2E710020DFC4</string>
 											<string>38B608610A8E5F490047F5C9</string>
 											<string>38B608620A8E5F490047F5C9</string>
 											<string>38B6087B0A8E61020047F5C9</string>
-											<string>38B60A030A8E719A0047F5C9</string>
-											<string>38B60A950A8E7ABA0047F5C9</string>
+											<string>389A014A0A8E85F700181B62</string>
+											<string>389A014B0A8E85F700181B62</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>3864ACFA0A8E2E710020DFC4</string>
 											<string>3864ACFB0A8E2E710020DFC4</string>
 											<string>3864ACFC0A8E2E710020DFC4</string>
-											<string>38B608660A8E5F490047F5C9</string>
 											<string>38B608670A8E5F490047F5C9</string>
-											<string>38B608680A8E5F490047F5C9</string>
 											<string>38B608690A8E5F490047F5C9</string>
-											<string>38B6086A0A8E5F490047F5C9</string>
 											<string>38B6087D0A8E61020047F5C9</string>
-											<string>38B609D90A8E6F390047F5C9</string>
-											<string>38B609DA0A8E6F390047F5C9</string>
-											<string>38B609EE0A8E70C70047F5C9</string>
-											<string>38B609EF0A8E70C70047F5C9</string>
-											<string>38B60A050A8E719A0047F5C9</string>
-											<string>38B60A060A8E719A0047F5C9</string>
-											<string>38B60A070A8E719A0047F5C9</string>
-											<string>38B60A080A8E719A0047F5C9</string>
+											<string>389A014C0A8E85F700181B62</string>
+											<string>389A014D0A8E85F700181B62</string>
+											<string>389A014E0A8E85F700181B62</string>
+											<string>389A014F0A8E85F700181B62</string>
+											<string>389A01500A8E85F700181B62</string>
+											<string>389A01510A8E85F700181B62</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -405,9 +400,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>38B608400A8E56B30047F5C9</string>
+				<string>389A01530A8E85F700181B62</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>38B608410A8E56B30047F5C9</string>
+				<string>389A01540A8E85F700181B62</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -541,14 +536,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>38B60ABA0A8E7B460047F5C9</string>
-		<string>38B60ABB0A8E7B460047F5C9</string>
-		<string>38B60AB80A8E7B460047F5C9</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>38B60AB70A8E7B460047F5C9</string>
 		<string>3864ACFE0A8E2E710020DFC4</string>
-		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Export Plugins/BookMooch Exporter/BookMooch Exporter.xcodeproj</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
+		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Export Plugins/BookMooch Exporter/BookMooch Exporter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>170 136 1189 742 0 0 1440 878 </string>
@@ -589,8 +579,6 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -630,7 +618,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>3864ACFE0A8E2E710020DFC4</string>
-				<string>38B6084D0A8E58400047F5C9</string>
+				<string>389A01550A8E85F700181B62</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -641,7 +629,7 @@
 			<key>WindowToolGUID</key>
 			<string>3864ACFE0A8E2E710020DFC4</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1000,9 +988,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>38B6084E0A8E58400047F5C9</string>
+				<string>389A01560A8E85F700181B62</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>38B6084F0A8E58400047F5C9</string>
+				<string>389A01570A8E85F700181B62</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
