@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3864ACEC0A8E28220020DFC4 /* BookMooch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3864ACEB0A8E28220020DFC4 /* BookMooch.jpg */; };
 		3864ACF00A8E2E410020DFC4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3864ACEE0A8E2E410020DFC4 /* AppDelegate.m */; };
+		38B608430A8E56CF0047F5C9 /* bookmooch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38B608420A8E56CF0047F5C9 /* bookmooch.jpg */; };
+		38B608580A8E5F2D0047F5C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 38B608570A8E5F2D0047F5C9 /* icon.icns */; };
+		38B60AA10A8E7B250047F5C9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B60A9E0A8E7B250047F5C9 /* CoreFoundation.framework */; };
+		38B60AA20A8E7B260047F5C9 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B60A9F0A8E7B250047F5C9 /* CoreServices.framework */; };
+		38B60AA30A8E7B260047F5C9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B60AA00A8E7B250047F5C9 /* Security.framework */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -24,9 +28,13 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* BookMooch Exporter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BookMooch Exporter_Prefix.pch"; sourceTree = "<group>"; };
-		3864ACEB0A8E28220020DFC4 /* BookMooch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = BookMooch.jpg; path = /Users/cjkarr/Desktop/BookMooch.jpg; sourceTree = "<absolute>"; };
 		3864ACEE0A8E2E410020DFC4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3864ACEF0A8E2E410020DFC4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		38B608420A8E56CF0047F5C9 /* bookmooch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bookmooch.jpg; sourceTree = "<group>"; };
+		38B608570A8E5F2D0047F5C9 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		38B60A9E0A8E7B250047F5C9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
+		38B60A9F0A8E7B250047F5C9 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
+		38B60AA00A8E7B250047F5C9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* BookMooch Exporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BookMooch Exporter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -37,6 +45,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				38B60AA10A8E7B250047F5C9 /* CoreFoundation.framework in Frameworks */,
+				38B60AA20A8E7B260047F5C9 /* CoreServices.framework in Frameworks */,
+				38B60AA30A8E7B260047F5C9 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +66,9 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38B60A9E0A8E7B250047F5C9 /* CoreFoundation.framework */,
+				38B60A9F0A8E7B250047F5C9 /* CoreServices.framework */,
+				38B60AA00A8E7B250047F5C9 /* Security.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -102,10 +116,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				38B608570A8E5F2D0047F5C9 /* icon.icns */,
+				38B608420A8E56CF0047F5C9 /* bookmooch.jpg */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
-				3864ACEB0A8E28220020DFC4 /* BookMooch.jpg */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -162,7 +177,8 @@
 			files = (
 				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				3864ACEC0A8E28220020DFC4 /* BookMooch.jpg in Resources */,
+				38B608430A8E56CF0047F5C9 /* bookmooch.jpg in Resources */,
+				38B608580A8E5F2D0047F5C9 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

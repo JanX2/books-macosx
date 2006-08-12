@@ -4,7 +4,7 @@
             ACTIONS = {myInventory = id; removeBook = id; upload = id; }; 
             CLASS = AppDelegate; 
             LANGUAGE = ObjC; 
-            OUTLETS = {password = id; tableView = id; username = id; }; 
+            OUTLETS = {password = id; source = id; tableView = id; username = id; }; 
             SUPERCLASS = NSObject; 
         }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
