@@ -218,6 +218,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -257,14 +259,13 @@
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>1C37FBAC04509CD000000102</string>
+								<string>38D4C8EE0A8F721A00A70FD8</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>2</integer>
-									<integer>1</integer>
-									<integer>0</integer>
+									<integer>14</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -298,8 +299,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -317,7 +316,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3812186C0A8F69A00004A331</string>
+										<string>38D4C8F50A8F723600A70FD8</string>
 										<key>history</key>
 										<array>
 											<string>38B26B9B0A8EEDB300387EC4</string>
@@ -326,7 +325,7 @@
 											<string>389EC2190A8F62A5009370AD</string>
 											<string>381218610A8F69220004A331</string>
 											<string>381218620A8F69220004A331</string>
-											<string>381218590A8F68E80004A331</string>
+											<string>38D4C8EF0A8F721A00A70FD8</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -336,9 +335,7 @@
 											<string>38B26B2B0A8EE12600387EC4</string>
 											<string>38B26B8D0A8EED8C00387EC4</string>
 											<string>38B26B8E0A8EED8C00387EC4</string>
-											<string>3812185B0A8F68E80004A331</string>
 											<string>381218630A8F69220004A331</string>
-											<string>381218640A8F69220004A331</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -396,9 +393,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>3812183B0A8F649B0004A331</string>
+				<string>38D4C8CC0A8F71CF00A70FD8</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>3812183C0A8F649B0004A331</string>
+				<string>38D4C8CD0A8F71CF00A70FD8</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -532,8 +529,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>38B2678F0A8EAB7F00387EC4</string>
-		<string>/Users/cjkarr/Desktop/Comic Book PDF Viewer/Comic Book PDF Viewer.xcodeproj</string>
+		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Comic Book PDF Viewer/Comic Book PDF Viewer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>37 154 1244 718 0 0 1440 878 </string>
@@ -613,7 +611,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>38B2678F0A8EAB7F00387EC4</string>
-				<string>3812183D0A8F649B0004A331</string>
+				<string>38D4C8F10A8F721A00A70FD8</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -983,9 +981,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>3812183E0A8F649B0004A331</string>
+				<string>38D4C8F20A8F721A00A70FD8</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>3812183F0A8F649B0004A331</string>
+				<string>38D4C8F30A8F721A00A70FD8</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
@@ -994,7 +992,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

@@ -89,17 +89,13 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 177169557;
-			PBXWorkspaceStateSaveDate = 177169557;
+			PBXPerProjectTemplateStateSaveDate = 177172942;
+			PBXWorkspaceStateSaveDate = 177172942;
 		};
 		perUserProjectItems = {
-			381218590A8F68E80004A331 /* PBXTextBookmark */ = 381218590A8F68E80004A331 /* PBXTextBookmark */;
-			3812185B0A8F68E80004A331 /* PBXTextBookmark */ = 3812185B0A8F68E80004A331 /* PBXTextBookmark */;
 			381218610A8F69220004A331 /* PBXBookmark */ = 381218610A8F69220004A331 /* PBXBookmark */;
 			381218620A8F69220004A331 /* PBXTextBookmark */ = 381218620A8F69220004A331 /* PBXTextBookmark */;
 			381218630A8F69220004A331 /* PBXBookmark */ = 381218630A8F69220004A331 /* PBXBookmark */;
-			381218640A8F69220004A331 /* PBXTextBookmark */ = 381218640A8F69220004A331 /* PBXTextBookmark */;
-			3812186C0A8F69A00004A331 /* PBXTextBookmark */ = 3812186C0A8F69A00004A331 /* PBXTextBookmark */;
 			389EC2050A8F606C009370AD /* PBXTextBookmark */ = 389EC2050A8F606C009370AD /* PBXTextBookmark */;
 			389EC2190A8F62A5009370AD /* PBXTextBookmark */ = 389EC2190A8F62A5009370AD /* PBXTextBookmark */;
 			38B267830A8EAA5B00387EC4 /* PBXTextBookmark */ = 38B267830A8EAA5B00387EC4 /* PBXTextBookmark */;
@@ -110,30 +106,12 @@
 			38B26B8E0A8EED8C00387EC4 /* PBXTextBookmark */ = 38B26B8E0A8EED8C00387EC4 /* PBXTextBookmark */;
 			38B26B9B0A8EEDB300387EC4 /* PBXTextBookmark */ = 38B26B9B0A8EEDB300387EC4 /* PBXTextBookmark */;
 			38B26B9C0A8EEDB300387EC4 /* PBXTextBookmark */ = 38B26B9C0A8EEDB300387EC4 /* PBXTextBookmark */;
+			38D4C8EF0A8F721A00A70FD8 /* PBXTextBookmark */ = 38D4C8EF0A8F721A00A70FD8 /* PBXTextBookmark */;
+			38D4C8F50A8F723600A70FD8 /* PBXTextBookmark */ = 38D4C8F50A8F723600A70FD8 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 38B2677B0A8EA7A500387EC4 /* Source Control */;
 		userBuildSettings = {
 		};
-	};
-	381218590A8F68E80004A331 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38B2677E0A8EAA2700387EC4 /* AppDelegate.m */;
-		name = "AppDelegate.m: 125";
-		rLen = 0;
-		rLoc = 2540;
-		rType = 0;
-		vrLen = 687;
-		vrLoc = 0;
-	};
-	3812185B0A8F68E80004A331 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38B2677E0A8EAA2700387EC4 /* AppDelegate.m */;
-		name = "AppDelegate.m: 125";
-		rLen = 0;
-		rLoc = 2540;
-		rType = 0;
-		vrLen = 687;
-		vrLoc = 0;
 	};
 	381218610A8F69220004A331 /* PBXBookmark */ = {
 		isa = PBXBookmark;
@@ -152,26 +130,6 @@
 	381218630A8F69220004A331 /* PBXBookmark */ = {
 		isa = PBXBookmark;
 		fRef = 381218520A8F68B00004A331 /* icon.icns */;
-	};
-	381218640A8F69220004A331 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38B2677F0A8EAA2700387EC4 /* AppDelegate.h */;
-		name = "AppDelegate.h: openURL:";
-		rLen = 0;
-		rLoc = 548;
-		rType = 0;
-		vrLen = 555;
-		vrLoc = 0;
-	};
-	3812186C0A8F69A00004A331 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 38B2677E0A8EAA2700387EC4 /* AppDelegate.m */;
-		name = "AppDelegate.m: 133";
-		rLen = 0;
-		rLoc = 2749;
-		rType = 0;
-		vrLen = 792;
-		vrLoc = 2045;
 	};
 	389EC2050A8F606C009370AD /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -236,8 +194,8 @@
 	38B2677E0A8EAA2700387EC4 /* AppDelegate.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {981, 2280}}";
-			sepNavSelRange = "{2749, 0}";
-			sepNavVisRect = "{{0, 1562}, {981, 494}}";
+			sepNavSelRange = "{2191, 0}";
+			sepNavVisRect = "{{0, 1575}, {981, 494}}";
 		};
 	};
 	38B2677F0A8EAA2700387EC4 /* AppDelegate.h */ = {
@@ -340,6 +298,26 @@
 		rType = 0;
 		vrLen = 863;
 		vrLoc = 0;
+	};
+	38D4C8EF0A8F721A00A70FD8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38B2677E0A8EAA2700387EC4 /* AppDelegate.m */;
+		name = "AppDelegate.m: 112";
+		rLen = 0;
+		rLoc = 2191;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 2048;
+	};
+	38D4C8F50A8F723600A70FD8 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 38B2677E0A8EAA2700387EC4 /* AppDelegate.m */;
+		name = "AppDelegate.m: 112";
+		rLen = 0;
+		rLoc = 2191;
+		rType = 0;
+		vrLen = 789;
+		vrLoc = 2048;
 	};
 	8D1107260486CEB800E47090 /* Comic Book PDF Viewer */ = {
 		activeExec = 0;
