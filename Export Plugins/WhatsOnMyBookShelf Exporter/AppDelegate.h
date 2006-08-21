@@ -7,6 +7,8 @@
     IBOutlet id username;
     IBOutlet id password;
 
+    IBOutlet id window;
+
     IBOutlet id comments;
     IBOutlet id tags;
 

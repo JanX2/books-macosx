@@ -14,7 +14,7 @@
 		return nil;
 		
 	const char * userData = [usernameString cStringUsingEncoding:NSASCIIStringEncoding];
-	UInt32 uLength = strlen (userData);
+	UInt32 uLength = [usernameString lengthOfBytesUsingEncoding:NSASCIIStringEncoding];
 
 	void * passwordData = nil;
 	UInt32 pLength = nil;
@@ -31,10 +31,15 @@
 		&passwordData,													// pointer to password data
 		NULL															// the item reference
     );
-
+	
 	if (status == noErr)
 	{
-		NSString * passwordString = [NSString stringWithCString:passwordData encoding:NSASCIIStringEncoding];
+		char * buffer = (char *) malloc ((pLength + 1) * sizeof (char));
+		strncpy (buffer, passwordData, pLength);
+		buffer[pLength] = 0;
+		NSString * passwordString = [NSString stringWithCString:buffer encoding:NSASCIIStringEncoding];
+		free (buffer);
+
 		return [passwordString retain];
 	}
 
@@ -46,12 +51,12 @@
 	NSString * usernameString = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
 
 	const char * userData = [usernameString cStringUsingEncoding:NSASCIIStringEncoding];
-	UInt32 uLength = strlen (userData);
+	UInt32 uLength = [usernameString lengthOfBytesUsingEncoding:NSASCIIStringEncoding];
 
 	OSStatus status;
 
 	const char * passwordData = [passwordString cStringUsingEncoding:NSASCIIStringEncoding];
-	UInt32 pLength = strlen (passwordData);
+	UInt32 pLength = [passwordString lengthOfBytesUsingEncoding:NSASCIIStringEncoding];
 	
 	if ([self getPasswordString] == nil)
 	{
@@ -77,7 +82,7 @@
 			27,																// length of service name
 			"WhatsOnMyBookshelf Exporter",									// service name
 			uLength,														// length of account name
-			[usernameString cStringUsingEncoding:NSASCIIStringEncoding],		// account name
+			userData,														// account name
 			NULL,															// length of password
 			NULL,															// pointer to password data
 			&item															// the item reference
@@ -95,7 +100,6 @@
 			return;
 		}
 	}
-	
 }
 
 - (IBAction) myInventory: (id) sender
@@ -142,7 +146,7 @@
 		}
 	}
 	
-	[isbnList writeToFile:@"/tmp/books-export/womb.txt" atomically:YES encoding:NSUTF8StringEncoding error:nil];
+	[isbnList writeToFile:@"/tmp/books-export/womb.txt" atomically:YES encoding:NSASCIIStringEncoding error:nil];
 
 	NSBundle * bundle = [NSBundle mainBundle];
 
@@ -181,13 +185,16 @@
 
 - (void)windowWillClose: (NSNotification *) aNotification
 {
+	[NSApp terminate:nil];
+}
+
+- (void)applicationWillTerminate: (NSNotification *) aNotification
+{
 	NSString * passwordString = [password stringValue];
 	NSString * keychainPassword = [self getPasswordString];
 
-	if (![keychainPassword isEqualTo:passwordString])
+	if (keychainPassword == nil || ![keychainPassword isEqualTo:passwordString] )
 		[self setPasswordString:passwordString];
-
-	[NSApp terminate:nil];
 }
 
 - (void) awakeFromNib
@@ -240,6 +247,8 @@
 
 	if (passwordString != nil)
 		[password setStringValue:passwordString];
+		
+	[window makeKeyAndOrderFront:nil];
 }
 
 @end

@@ -13,8 +13,8 @@
 	if (usernameString == nil)
 		return nil;
 		
-	const char * userData = [usernameString cStringUsingEncoding:NSUTF8StringEncoding];
-	UInt32 uLength = strlen (userData);
+	const char * userData = [usernameString cStringUsingEncoding:NSASCIIStringEncoding];
+	UInt32 uLength = [usernameString lengthOfBytesUsingEncoding:NSASCIIStringEncoding];
 
 	void * passwordData = nil;
 	UInt32 pLength = nil;
@@ -23,7 +23,7 @@
 
 	status = SecKeychainFindGenericPassword (
 		NULL,															// default keychain
-		18,																// length of service name
+		27,																// length of service name
 		"BookMooch Exporter",											// service name
 		uLength,														// length of account name
 		userData,														// account name
@@ -31,13 +31,18 @@
 		&passwordData,													// pointer to password data
 		NULL															// the item reference
     );
-
+	
 	if (status == noErr)
 	{
-		NSString * passwordString = [NSString stringWithCString:passwordData encoding:NSUTF8StringEncoding];
-		return passwordString;
+		char * buffer = (char *) malloc ((pLength + 1) * sizeof (char));
+		strncpy (buffer, passwordData, pLength);
+		buffer[pLength] = 0;
+		NSString * passwordString = [NSString stringWithCString:buffer encoding:NSASCIIStringEncoding];
+		free (buffer);
+
+		return [passwordString retain];
 	}
-	
+
 	return nil;
 }
 
@@ -45,19 +50,19 @@
 {
 	NSString * usernameString = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
 
-	const char * userData = [usernameString cStringUsingEncoding:NSUTF8StringEncoding];
-	UInt32 uLength = strlen (userData);
+	const char * userData = [usernameString cStringUsingEncoding:NSASCIIStringEncoding];
+	UInt32 uLength = [usernameString lengthOfBytesUsingEncoding:NSASCIIStringEncoding];
 
 	OSStatus status;
 
-	const char * passwordData = [passwordString cStringUsingEncoding:NSUTF8StringEncoding];
-	UInt32 pLength = strlen (passwordData);
+	const char * passwordData = [passwordString cStringUsingEncoding:NSASCIIStringEncoding];
+	UInt32 pLength = [passwordString lengthOfBytesUsingEncoding:NSASCIIStringEncoding];
 	
 	if ([self getPasswordString] == nil)
 	{
 		status = SecKeychainAddGenericPassword (
                 NULL,															// default keychain
-                18,																// length of service name
+                27,																// length of service name
                 "BookMooch Exporter",											// service name
                 uLength,														// length of account name
                 userData,														// account name
@@ -65,6 +70,8 @@
                 passwordData,													// pointer to password data
                 NULL															// the item reference
 		);
+		
+		return;
 	}
 	else
 	{
@@ -72,26 +79,26 @@
 		
 		status = SecKeychainFindGenericPassword (
 			NULL,															// default keychain
-			18,																// length of service name
+			27,																// length of service name
 			"BookMooch Exporter",											// service name
 			uLength,														// length of account name
-			[usernameString cStringUsingEncoding:NSUTF8StringEncoding],		// account name
+			userData,														// account name
 			NULL,															// length of password
 			NULL,															// pointer to password data
 			&item															// the item reference
 		);
 
 		status = SecKeychainItemDelete (item);
-		
+
 		[self setPasswordString:passwordString];
-	}
-	
-	if (status == noErr)
-		return;
-	else
-	{
-		NSLog (@"Error saving password: %d", status);
-		return;
+
+		if (status == noErr)
+			return;
+		else
+		{
+			NSLog (@"Error saving password: %d", status);
+			return;
+		}
 	}
 }
 

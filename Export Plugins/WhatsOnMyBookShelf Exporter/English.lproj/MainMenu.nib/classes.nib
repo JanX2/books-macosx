@@ -13,6 +13,7 @@
                 tableView = id; 
                 tags = id; 
                 username = id; 
+                window = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
