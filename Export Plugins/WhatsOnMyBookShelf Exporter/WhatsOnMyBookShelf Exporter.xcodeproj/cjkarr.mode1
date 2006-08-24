@@ -218,6 +218,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -254,12 +256,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
+								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>8</integer>
+									<integer>7</integer>
+									<integer>3</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -293,14 +298,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>AppDelegate.m</string>
+								<string>womb.py</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -308,19 +311,19 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>AppDelegate.m</string>
+										<string>womb.py</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>38A5D54E0A995D5600A47FF1</string>
+										<string>38BB655B0A9C96AF001AAD2C</string>
 										<key>history</key>
 										<array>
 											<string>3879761A0A98944200DBB199</string>
 											<string>387976230A9894C400DBB199</string>
-											<string>387977480A98A2F200DBB199</string>
 											<string>38A5D46B0A9918F400A47FF1</string>
 											<string>38A5D49B0A991B4400A47FF1</string>
-											<string>38A5D5280A995BE400A47FF1</string>
+											<string>38BB654F0A9C82E9001AAD2C</string>
+											<string>387977480A98A2F200DBB199</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -330,12 +333,7 @@
 											<string>3879761C0A98944200DBB199</string>
 											<string>387976240A9894C400DBB199</string>
 											<string>387976CF0A989C9300DBB199</string>
-											<string>38A5D45C0A9909AA00A47FF1</string>
-											<string>38A5D46D0A9918F400A47FF1</string>
-											<string>38A5D47E0A9919C500A47FF1</string>
-											<string>38A5D47F0A9919C500A47FF1</string>
-											<string>38A5D4800A9919C500A47FF1</string>
-											<string>38A5D49C0A991B4400A47FF1</string>
+											<string>38BB65500A9C82E9001AAD2C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -393,9 +391,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>38A5D4540A99096700A47FF1</string>
+				<string>38BB65520A9C82E9001AAD2C</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>38A5D4550A99096700A47FF1</string>
+				<string>38BB65530A9C82E9001AAD2C</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -529,13 +527,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>38A5D48C0A9919C500A47FF1</string>
-		<string>38A5D48D0A9919C500A47FF1</string>
-		<string>38A5D4890A9919C500A47FF1</string>
-		<string>38A5D4880A9919C500A47FF1</string>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>3879761E0A98944200DBB199</string>
-		<string>1CD10A99069EF8BA00B06720</string>
+		<string>38BB655A0A9C82E9001AAD2C</string>
 		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Export Plugins/WhatsOnMyBookShelf Exporter/WhatsOnMyBookShelf Exporter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -658,8 +650,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {510, 288}}</string>
-											<string>{{510, 0}, {647, 288}}</string>
+											<string>{{0, 0}, {509, 312}}</string>
+											<string>{{509, 0}, {648, 312}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -674,8 +666,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {1157, 288}}</string>
-											<string>{{0, 288}, {1157, 349}}</string>
+											<string>{{0, 0}, {1157, 312}}</string>
+											<string>{{0, 312}, {1157, 325}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -722,14 +714,14 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>38A5D4820A9919C500A47FF1</string>
+				<string>38BB65540A9C82E9001AAD2C</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>38A5D4830A9919C500A47FF1</string>
-				<string>38A5D4840A9919C500A47FF1</string>
-				<string>38A5D4850A9919C500A47FF1</string>
-				<string>38A5D4860A9919C500A47FF1</string>
-				<string>38A5D4870A9919C500A47FF1</string>
-				<string>38A5D4880A9919C500A47FF1</string>
+				<string>38BB65550A9C82E9001AAD2C</string>
+				<string>38BB65560A9C82E9001AAD2C</string>
+				<string>38BB65570A9C82E9001AAD2C</string>
+				<string>38BB65580A9C82E9001AAD2C</string>
+				<string>38BB65590A9C82E9001AAD2C</string>
+				<string>38BB655A0A9C82E9001AAD2C</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debug</string>
