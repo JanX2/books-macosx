@@ -117,6 +117,9 @@
 
 - (IBAction)upload:(id)sender
 {
+	[progressBar startAnimation:sender];
+	[NSApp beginSheet:progressWindow modalForWindow:window modalDelegate:nil didEndSelector:nil contextInfo:NULL];
+	
 	NSString * passwordString = [password stringValue];
 
 	NSString * usernameString = [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
@@ -126,9 +129,6 @@
 		NSRunAlertPanel (@"No Username Found!", @"Please enter a username in provided field.", @"OK", nil, nil);
 		return;
 	}
-	
-	NSString * tagString = [tags stringValue];
-	NSString * commentString = [comments string];
 	
 	NSArray * books = [tableArray arrangedObjects];
 	
@@ -141,8 +141,21 @@
 		
 		if (isbn != nil)
 		{
-			[isbnList appendString:isbn];
-			[isbnList appendString:@"\n"];
+			NSString * tagString = [[books objectAtIndex:i] valueForKey:@"tags"];
+			
+			if (tagString == nil)
+				tagString = @"";
+
+			NSString * commentStr = [[books objectAtIndex:i] valueForKey:@"comment"];
+			
+			if (commentStr == nil)
+				commentStr = @" ";
+
+			NSMutableString * commentString = [NSMutableString stringWithString:commentStr];
+			[commentString replaceOccurrencesOfString:@"\n" withString:@" " options:NSCaseInsensitiveSearch range:NSMakeRange (0, [commentString length])];
+			[commentString replaceOccurrencesOfString:@"\r" withString:@" " options:NSCaseInsensitiveSearch range:NSMakeRange (0, [commentString length])];
+				
+			[isbnList appendString:[NSString stringWithFormat:@"%@\t%@\t%@\n", isbn, tagString, commentString, nil]];
 		}
 	}
 	
@@ -159,7 +172,7 @@
 	[task setLaunchPath:scriptPath];
 	[task setCurrentDirectoryPath:[scriptPath stringByDeletingLastPathComponent]];
 	
-	NSArray * arguments = [NSArray arrayWithObjects:usernameString, passwordString, tagString, commentString, nil];
+	NSArray * arguments = [NSArray arrayWithObjects:usernameString, passwordString, nil];
 	[task setArguments:arguments];
 	
 	[task launch];
@@ -175,12 +188,17 @@
 	{
 		NSString * wombError = [NSString stringWithContentsOfFile:@"/tmp/books-export/womb.error" encoding:NSASCIIStringEncoding error:nil];
 
-		if (![wombError isEqualTo:@""])
+		if (!(wombError == nil || [wombError isEqualTo:@""]))
 		{
 			[errorText setString:wombError];
 			[errorWindow makeKeyAndOrderFront:sender];
 		}
 	}
+	
+	[NSApp endSheet:progressWindow];
+	[progressWindow orderOut:sender];
+	
+	[progressBar stopAnimation:sender];
 }
 
 - (void)windowWillClose: (NSNotification *) aNotification

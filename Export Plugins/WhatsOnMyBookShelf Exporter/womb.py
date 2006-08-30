@@ -5,12 +5,7 @@ from SOAPpy import SOAPProxy
 
 user = sys.argv[1]
 password = sys.argv[2]
-tags = sys.argv[3]
-comment = sys.argv[4]
 
-if (comment == None or comment == ""):
-	comment = "Uploaded by Books. (http://books.aetherial.net/)"
- 
 url = 'http://whatsonmybookshelf.com/api/index.php'
 namespace = 'urn:womb'  
 server = SOAPProxy(url, namespace)      
@@ -26,7 +21,14 @@ error_string = ""
 
 for line in file.readlines():
 	if (line != ""):
-		isbn = line.split (" ")[0].strip ()
+		fields = line.split ("\t")
+
+		isbn = fields[0].split(" ")[0].strip ()
+		tags = fields[1].strip ()
+		comment = fields[2].strip ()
+
+		if (comment == None or comment == ""):
+			comment = "Uploaded by Books. (http://books.aetherial.net/)"
 
 		print (isbn)
 

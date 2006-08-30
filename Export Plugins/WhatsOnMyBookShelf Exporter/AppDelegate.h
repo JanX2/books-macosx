@@ -18,6 +18,9 @@
 
     IBOutlet id errorWindow;
     IBOutlet id errorText;
+
+    IBOutlet id progressWindow;
+    IBOutlet id progressBar;
 }
 
 - (IBAction) myInventory: (id)sender;

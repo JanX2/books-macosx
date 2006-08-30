@@ -9,6 +9,8 @@
                 errorText = id; 
                 errorWindow = id; 
                 password = id; 
+                progressBar = id; 
+                progressWindow = id; 
                 tableArray = id; 
                 tableView = id; 
                 tags = id; 

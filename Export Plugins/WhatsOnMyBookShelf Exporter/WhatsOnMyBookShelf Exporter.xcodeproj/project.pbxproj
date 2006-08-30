@@ -40,7 +40,7 @@
 		387976890A989B3A00DBB199 /* SOAPpy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SOAPpy; sourceTree = "<group>"; };
 		387976C50A989B4E00DBB199 /* womb.py */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.python; path = womb.py; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* WhatsOnMyBookShelf Exporter.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "WhatsOnMyBookShelf Exporter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* WhatsOnMyBookShelf Exporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WhatsOnMyBookShelf Exporter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
