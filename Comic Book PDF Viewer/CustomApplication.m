@@ -39,6 +39,11 @@
 				[((AppDelegate *) [self delegate]) setPage:-1];
 				return;
 			}
+			else if ([[event characters] isEqualToString:[NSString stringWithFormat:@"g"]])
+			{
+				[[NSApp delegate] doSearch:nil];
+				return;
+			}
 			
 			break;
 		default:

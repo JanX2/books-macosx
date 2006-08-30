@@ -1,7 +1,13 @@
 {
     IBClasses = (
         {
-            ACTIONS = {close = id; nextPage = id; openDocument = id; previousPage = id; }; 
+            ACTIONS = {
+                close = id; 
+                doSearch = id; 
+                nextPage = id; 
+                openDocument = id; 
+                previousPage = id; 
+            }; 
             CLASS = AppDelegate; 
             LANGUAGE = ObjC; 
             OUTLETS = {
@@ -9,12 +15,14 @@
                 nextButton = id; 
                 pageScroller = id; 
                 previousButton = id; 
+                search = id; 
                 window = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
         {CLASS = CustomApplication; LANGUAGE = ObjC; SUPERCLASS = NSApplication; }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = NSSegmentedControl; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {
             ACTIONS = {checkForUpdates = id; }; 
             CLASS = SUUpdater; 

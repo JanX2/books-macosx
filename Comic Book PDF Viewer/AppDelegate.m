@@ -24,7 +24,12 @@
 	else
 		[nextButton setEnabled:YES];
 
-	PDFPage * pdfPage = [document pageAtIndex:index];
+	PDFPage * pdfPage = nil;
+
+	if (index < [document pageCount])
+		pdfPage = [document pageAtIndex:index];
+	else
+		pdfPage = [document pageAtIndex:0];
 	
 	[imageView goToPage:pdfPage];
 
@@ -111,6 +116,7 @@
 	}
 	else
 	{
+		[pageScroller setEnabled:YES];
 		[pageScroller setMaxValue:[document pageCount] - 1];
 		[pageScroller setNumberOfTickMarks:[document pageCount]];
 		[pageScroller setAllowsTickMarkValuesOnly:YES];
@@ -146,6 +152,36 @@
 {
 	[defaults setInteger:index forKey:@"lastPage"];
 }	
+
+- (IBAction) doSearch: (id) sender
+{
+	NSString * searchText = [search stringValue];
+	
+	if ([searchText isEqualToString:lastSearch])
+	{
+		lastIndex++;
+
+		if (searchResults != nil && lastIndex >= [searchResults count])
+			lastIndex = 0;
+	}
+	else
+	{
+		lastSearch = [searchText copy];
+		
+		searchResults = [document findString:searchText withOptions:NSCaseInsensitiveSearch];
+		lastIndex = 0;
+	}
+
+	PDFPage * match = nil;
+	
+	PDFSelection * selection = (PDFSelection *) [searchResults objectAtIndex:lastIndex];
+
+	[imageView setCurrentSelection:selection];
+		
+	match = [[selection pages] objectAtIndex:0];
+
+	[self setPage:[document indexForPage:match]];
+}
 
 
 @end
