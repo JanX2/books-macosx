@@ -261,7 +261,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>17</integer>
+									<integer>8</integer>
+									<integer>5</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -302,7 +304,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>AppDelegate.m</string>
+								<string>Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -310,19 +312,19 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>AppDelegate.m</string>
+										<string>Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>385AA7970AA645FA0033EB3E</string>
+										<string>38D09EA70ACC30B1008377B8</string>
 										<key>history</key>
 										<array>
 											<string>3879761A0A98944200DBB199</string>
 											<string>387976230A9894C400DBB199</string>
-											<string>385AA7310AA63B580033EB3E</string>
 											<string>385AA7860AA6458D0033EB3E</string>
 											<string>385AA7870AA6458D0033EB3E</string>
-											<string>385AA7880AA6458D0033EB3E</string>
+											<string>38D09EA40ACC30B1008377B8</string>
+											<string>38D09EA50ACC30B1008377B8</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -332,18 +334,7 @@
 											<string>3879761C0A98944200DBB199</string>
 											<string>387976240A9894C400DBB199</string>
 											<string>387976CF0A989C9300DBB199</string>
-											<string>385AA7340AA63B580033EB3E</string>
-											<string>385AA7350AA63B580033EB3E</string>
-											<string>385AA7360AA63B580033EB3E</string>
-											<string>385AA7370AA63B580033EB3E</string>
-											<string>385AA7380AA63B580033EB3E</string>
-											<string>385AA7600AA63D7D0033EB3E</string>
-											<string>385AA7670AA63DD00033EB3E</string>
-											<string>385AA7780AA641C90033EB3E</string>
-											<string>385AA7890AA6458D0033EB3E</string>
-											<string>385AA78A0AA6458D0033EB3E</string>
-											<string>385AA78B0AA6458D0033EB3E</string>
-											<string>385AA78C0AA6458D0033EB3E</string>
+											<string>38D09EA60ACC30B1008377B8</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -401,9 +392,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>385AA71D0AA639EB0033EB3E</string>
+				<string>38D09EA80ACC30B1008377B8</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>385AA71E0AA639EB0033EB3E</string>
+				<string>38D09EA90ACC30B1008377B8</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -537,10 +528,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>3879761E0A98944200DBB199</string>
-		<string>385AA7250AA639EB0033EB3E</string>
+		<string>38D09EB00ACC30B1008377B8</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Export Plugins/WhatsOnMyBookShelf Exporter/WhatsOnMyBookShelf Exporter.xcodeproj</string>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
 	</array>
 	<key>WindowString</key>
 	<string>8 138 1224 640 0 0 1280 778 </string>
@@ -662,8 +652,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {506, 324}}</string>
-											<string>{{506, 0}, {651, 324}}</string>
+											<string>{{0, 0}, {504, 330}}</string>
+											<string>{{504, 0}, {653, 330}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -678,8 +668,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {1157, 324}}</string>
-											<string>{{0, 324}, {1157, 313}}</string>
+											<string>{{0, 0}, {1157, 330}}</string>
+											<string>{{0, 330}, {1157, 307}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -703,7 +693,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1157, 637}}</string>
 								<key>RubberWindowFrame</key>
-								<string>23 93 1157 678 0 0 1280 778 </string>
+								<string>23 139 1157 639 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXDebugSessionModule</string>
@@ -712,7 +702,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>637pt</string>
+					<string>598pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -726,19 +716,19 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>385AA71F0AA639EB0033EB3E</string>
+				<string>38D09EAA0ACC30B1008377B8</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>385AA7200AA639EB0033EB3E</string>
-				<string>385AA7210AA639EB0033EB3E</string>
-				<string>385AA7220AA639EB0033EB3E</string>
-				<string>385AA7230AA639EB0033EB3E</string>
-				<string>385AA7240AA639EB0033EB3E</string>
-				<string>385AA7250AA639EB0033EB3E</string>
+				<string>38D09EAB0ACC30B1008377B8</string>
+				<string>38D09EAC0ACC30B1008377B8</string>
+				<string>38D09EAD0ACC30B1008377B8</string>
+				<string>38D09EAE0ACC30B1008377B8</string>
+				<string>38D09EAF0ACC30B1008377B8</string>
+				<string>38D09EB00ACC30B1008377B8</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debug</string>
 			<key>WindowString</key>
-			<string>23 93 1157 678 0 0 1280 778 </string>
+			<string>23 139 1157 639 0 0 1280 778 </string>
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
@@ -1001,7 +991,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

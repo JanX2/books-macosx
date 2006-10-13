@@ -75,6 +75,9 @@ listxml.elements().each("/list/book") do |book_element|
 				field.attributes["name"] = "CoverImageURL"
 
 				field.add_text("file://" + bookpath + "/" + bookproperty.text)
+			elsif (name.to_s() == "Location")
+				copy = book.add_element("copy")
+				copy.attributes["location"] = bookproperty.text
 			else
 				newname = mapping[name]
 			

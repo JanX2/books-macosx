@@ -123,7 +123,33 @@
 	if (![keychainPassword isEqualTo:passwordString])
 		[self setPasswordString:passwordString];
 	
-	NSLog (@"Upload");
+	NSMutableString * isbnStrings = [NSMutableString string];
+
+	int i = 0;
+	for (i = 0; i < [[tableArray arrangedObjects] count]; i++)
+	{
+		NSString * isbn = [[[tableArray arrangedObjects] objectAtIndex:i] valueForKey:@"isbn"];
+
+		if (isbn != nil)
+		{
+			[isbnStrings appendString:isbn];
+			[isbnStrings appendString:@"+"];
+		}
+	}
+	
+	NSMutableString * urlString = [NSMutableString stringWithString:@"http://"];
+	[urlString appendString:[username stringValue]];
+	[urlString appendString:@":"];
+	[urlString appendString:[password stringValue]];
+	[urlString appendString:@"@bookmooch.com/api/userbook?n=1&target=inventory&action=add&o=xml&asins="];
+	[urlString appendString:isbnStrings];
+
+	NSXMLDocument * xml = [[NSXMLDocument alloc] initWithContentsOfURL:[NSURL URLWithString:urlString] options:NSXMLDocumentTidyXML error:NULL];
+	
+	if (xml == nil)
+        NSRunAlertPanel (@"Error", @"Unable to upload book data. Check your username and password.", @"OK", nil, nil);
+	else
+        NSRunAlertPanel (@"Success!", @"Your books have been successfully listed.", @"OK", nil, nil);
 }
 
 - (void)windowWillClose: (NSNotification *) aNotification
