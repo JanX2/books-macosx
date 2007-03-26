@@ -6,9 +6,9 @@
 	<string>iPod Exporter</string>
 	<key>BooksPluginType</key>
 	<string>Export</string>
+	<key>ExportImages</key>
+	<string>NO</string>
 	<key>BooksScriptName</key>
-	<string>ExportImages</string>
-	<key>NO</key>
 	<string>script.sh</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
@@ -27,7 +27,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

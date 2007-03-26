@@ -18,6 +18,18 @@ import org.xml.sax.SAXException;
 
 public class iPodExporter 
 {
+	private static String normalize (Object object)
+	{
+		if (object == null)
+			object = "Unknown";
+		
+		String text = object.toString ();
+		
+		text.replaceAll ("/", "-").replaceAll (":", "-");
+		
+		return text;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static void main (String[] args) throws ParserConfigurationException, SAXException, IOException 
 	{
@@ -42,47 +54,45 @@ public class iPodExporter
 		{
 			Element book = (Element) books.get (i);
 			
-			NodeList fields = book.getElementsByTagName ("field");
-			HashMap bookDef = new HashMap ();
-			
-			for (int j = 0; j < fields.getLength (); j++)
+			if (!(book.getAttribute ("id").equals ("")))
 			{
-				Element field = (Element) fields.item (j);
+				NodeList fields = book.getElementsByTagName ("field");
+				HashMap bookDef = new HashMap ();
 				
-				String name = field.getAttribute ("name");
-				
-				if (name.equals ("coverImage"))
+				for (int j = 0; j < fields.getLength (); j++)
 				{
+					Element field = (Element) fields.item (j);
 					
+					String name = field.getAttribute ("name");
+					
+					if (name.equals ("coverImage"))
+					{
+						
+					}
+					else
+					{
+						String value = field.getTextContent ();
+	
+						bookDef.put (name, value);
+					}
 				}
-				else
+	
+				File bookFile = new File (root + "/" + normalize (bookDef.get ("listName")) + "/" + normalize (bookDef.get ("genre")) + "/" + normalize (bookDef.get ("title")));
+				bookFile.getParentFile ().mkdirs ();
+				
+				String bookString = "<title>" + bookDef.get ("title") + "</title>\n";
+				
+				for (int j = 0; j < mdFields.length; j++)
 				{
-					String value = field.getTextContent ();
-
-					bookDef.put (name, value);
+					if (bookDef.get (mdFields[j]) != null)
+						bookString = bookString + bookDef.get (mdFields[j]) + "\n";
 				}
+	
+				FileWriter bookWriter = new FileWriter (bookFile);
+				bookWriter.write (bookString);
+				
+				bookWriter.close ();
 			}
-
-			String genre = (String) bookDef.get ("genre");
-			
-			if (genre == null)
-				genre = "Undefined Genre";
-			
-			File bookFile = new File (root + "/" + bookDef.get ("listName") + "/" + genre + "/" + ((String) bookDef.get ("title")).replaceAll ("/", "-").replaceAll (":", "-"));
-			bookFile.getParentFile ().mkdirs ();
-			
-			String bookString = "<title>" + bookDef.get ("title") + "</title>\n";
-			
-			for (int j = 0; j < mdFields.length; j++)
-			{
-				if (bookDef.get (mdFields[j]) != null)
-					bookString = bookString + bookDef.get (mdFields[j]) + "\n";
-			}
-
-			FileWriter bookWriter = new FileWriter (bookFile);
-			bookWriter.write (bookString);
-			
-			bookWriter.close ();
 		}
 	}
 }

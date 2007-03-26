@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		385A7CE1095B987900F989F0 /* ipod.jar in Resources */ = {isa = PBXBuildFile; fileRef = 38974E96095B95BE00F1180F /* ipod.jar */; };
-		385A7D28095B9A2000F989F0 /* src in Resources */ = {isa = PBXBuildFile; fileRef = 385A7D18095B9A2000F989F0 /* src */; };
 		385FDC5E09041E7400C511B9 /* TemplateExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 385FDC5D09041E7400C511B9 /* TemplateExporter.m */; };
 		385FDC9A0904213400C511B9 /* script.sh in Resources */ = {isa = PBXBuildFile; fileRef = 385FDC990904213400C511B9 /* script.sh */; };
 		387468C6096D68670016A59A /* export-plugin.icns in Resources */ = {isa = PBXBuildFile; fileRef = 387468C5096D68670016A59A /* export-plugin.icns */; };
+		38A5A4410BB890FD0024F7AC /* ipod.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A5A4400BB890FD0024F7AC /* ipod.png */; };
+		38CC3A050BB88BF700961809 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 38CC3A040BB88BF700961809 /* Credits.rtf */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -33,6 +34,8 @@
 		385FDC990904213400C511B9 /* script.sh */ = {isa = PBXFileReference; explicitFileType = text.script.sh; fileEncoding = 4; path = script.sh; sourceTree = "<group>"; };
 		387468C5096D68670016A59A /* export-plugin.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "export-plugin.icns"; sourceTree = "<group>"; };
 		38974E96095B95BE00F1180F /* ipod.jar */ = {isa = PBXFileReference; explicitFileType = archive.jar; path = ipod.jar; sourceTree = "<group>"; };
+		38A5A4400BB890FD0024F7AC /* ipod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipod.png; sourceTree = "<group>"; };
+		38CC3A040BB88BF700961809 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* TemplateExporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TemplateExporter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -108,6 +111,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				38A5A4400BB890FD0024F7AC /* ipod.png */,
+				38CC3A040BB88BF700961809 /* Credits.rtf */,
 				387468C5096D68670016A59A /* export-plugin.icns */,
 				385A7D18095B9A2000F989F0 /* src */,
 				385FDC990904213400C511B9 /* script.sh */,
@@ -173,8 +178,9 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				385FDC9A0904213400C511B9 /* script.sh in Resources */,
 				385A7CE1095B987900F989F0 /* ipod.jar in Resources */,
-				385A7D28095B9A2000F989F0 /* src in Resources */,
 				387468C6096D68670016A59A /* export-plugin.icns in Resources */,
+				38CC3A050BB88BF700961809 /* Credits.rtf in Resources */,
+				38A5A4410BB890FD0024F7AC /* ipod.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,10 +49,15 @@
 	
 	NSArray * arguments = [NSArray arrayWithObject:filePath];
 	[task setArguments:arguments];
-	
+
 	[task launch];
 	
 	[task waitUntilExit];
+	
+	int result = NSRunInformationalAlertPanel(@"Next Step: Copy to iPod", @"The book records have been exported to the location specified as iPod note files. You should now copy them to the desired location on your iPod.", @"OK", @"Help", nil);
+	
+	if (result == NSAlertAlternateReturn)
+		[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://docs.info.apple.com/article.html?artnum=93951"]];
 	
 	[[NSApplication sharedApplication] terminate:nil];
 }
