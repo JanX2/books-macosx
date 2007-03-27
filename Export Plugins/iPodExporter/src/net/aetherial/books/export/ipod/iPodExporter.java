@@ -25,7 +25,10 @@ public class iPodExporter
 		
 		String text = object.toString ();
 		
-		text.replaceAll ("/", "-").replaceAll (":", "-");
+		text = text.replace ('/', ' ').replace (':', ' ');
+		
+		if (text.length () > 255)
+			text = text.substring(0, 255);
 		
 		return text;
 	}
@@ -33,6 +36,7 @@ public class iPodExporter
 	@SuppressWarnings("unchecked")
 	public static void main (String[] args) throws ParserConfigurationException, SAXException, IOException 
 	{
+		System.out.println ("Exporting to iPod...");
 		String[] mdFields = {"title", "publisher", "publisherDate", "illustrators", "authors", "summary", 
 							"genre", "listName"};
 
