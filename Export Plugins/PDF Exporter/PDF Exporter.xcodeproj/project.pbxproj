@@ -15,6 +15,7 @@
 		38747ED009DA19AC0013A806 /* run.sh in Resources */ = {isa = PBXBuildFile; fileRef = 38747ECF09DA19AC0013A806 /* run.sh */; };
 		38C7005709B3C625004EA9B5 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7005609B3C625004EA9B5 /* Book.m */; };
 		38F2B06209D9803A00E69477 /* List (8.5" x 11").xsl in Resources */ = {isa = PBXBuildFile; fileRef = 38F2B06109D9803A00E69477 /* List (8.5" x 11").xsl */; };
+		38FC53690BBAB6C7000D51FD /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC53680BBAB6C7000D51FD /* Quartz.framework */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -40,6 +41,7 @@
 		38C7005509B3C625004EA9B5 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		38C7005609B3C625004EA9B5 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		38F2B06109D9803A00E69477 /* List (8.5" x 11").xsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "List (8.5\" x 11\").xsl"; sourceTree = "<group>"; };
+		38FC53680BBAB6C7000D51FD /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* PDF Exporter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PDF Exporter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -50,6 +52,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				38FC53690BBAB6C7000D51FD /* Quartz.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +134,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38FC53680BBAB6C7000D51FD /* Quartz.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);

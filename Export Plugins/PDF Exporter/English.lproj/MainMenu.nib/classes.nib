@@ -1,32 +1,18 @@
 {
     IBClasses = (
         {
-            ACTIONS = {
-                createPDF = id; 
-                customizeFields = id; 
-                doneSelectingFields = id; 
-                exportPDF = id; 
-                previewRecords = id; 
-                removeRecords = id; 
-                selectRecords = id; 
-            }; 
+            ACTIONS = {createPDF = id; printPDF = id; savePDF = id; }; 
             CLASS = AppDelegate; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                allRecordsController = id; 
-                allRecordsStatus = id; 
-                allRecordsTable = id; 
-                fieldsController = id; 
-                mainWindow = id; 
-                panelTable = id; 
-                panelWindow = id; 
-                progressIndicator = id; 
-                progressWindow = id; 
-                searchField = id; 
-                selectedRecordsController = id; 
-                selectedRecordsStatus = id; 
-                selectedRecordsTable = id; 
-                styleList = id; 
+                pdfView = PDFView; 
+                print = NSButton; 
+                recordTable = NSTableView; 
+                records = NSArrayController; 
+                save = NSButton; 
+                search = NSSearchField; 
+                status = NSTextField; 
+                stylesMenu = id; 
             }; 
             SUPERCLASS = NSObject; 
         }, 

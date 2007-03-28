@@ -3,30 +3,9 @@
 
 @implementation AppDelegate
 
-- (IBAction)createPDF:(id)sender
-{
-	[self exportPDF:sender];
-
-	NSSavePanel * panel = [NSSavePanel savePanel];
-	[panel setRequiredFileType:@"pdf"];
-	
-	int choice = [panel runModal];
-
-	if (choice == NSFileHandlingPanelOKButton)
-	{
-		NSString * filename = [panel filename];
-		
-		[[NSFileManager defaultManager] copyPath:@"/tmp/books-export/export.pdf" toPath:filename handler:nil];
-	}
-}	
-
 - (IBAction)exportPDF:(id)sender
 {
-	[progressIndicator startAnimation:self];
-	
-	[NSApp beginSheet:progressWindow modalForWindow:mainWindow modalDelegate:self didEndSelector:nil contextInfo:NULL];
-	
-	NSArray * books = [selectedRecordsController arrangedObjects];
+	NSArray * books = [records arrangedObjects];
 	
 	NSXMLElement * root = [[NSXMLElement alloc] initWithName:@"exportData"];
 	NSXMLDocument * xml = [[NSXMLDocument alloc] initWithRootElement:root];
@@ -65,7 +44,7 @@
 
 	[xmlString writeToFile:@"/tmp/books-export/export.xml" atomically:YES encoding:NSUTF8StringEncoding error:NULL];
 	
-	NSString * selectedStyle = (NSString *) [styleList titleOfSelectedItem];
+	NSString * selectedStyle = (NSString *) [stylesMenu titleOfSelectedItem];
 	
 	NSString * resourcePath = [[NSBundle mainBundle] resourcePath];
 	
@@ -85,38 +64,103 @@
 	[task waitUntilExit];
 	
 	[task release];
-	
-	[NSApp endSheet:progressWindow];
-	[progressWindow orderOut:self];
-	
-	[progressIndicator stopAnimation:self];
 }
 
-- (IBAction)customizeFields:(id)sender
+- (IBAction)createPDF:(id)sender
 {
-	[panelWindow makeKeyAndOrderFront:self];
-}
-
-- (IBAction)doneSelectingFields:(id)sender
-{
-	[panelWindow orderOut:self];
-}
-
-- (IBAction)previewRecords:(id)sender
-{
+	[status setStringValue:@"Generating document..."];
 	[self exportPDF:sender];
+	
+	PDFDocument * doc = [[PDFDocument alloc] initWithURL:[NSURL URLWithString:@"file:///tmp/books-export/export.pdf"]];
+	[pdfView setDocument:doc];
+	
+	[pdfView setNeedsDisplay:YES];
+	
+	[save setEnabled:YES];
+	[print setEnabled:YES];
+	[status setStringValue:[NSString stringWithFormat:@"%d Pages", [doc pageCount]]];
+}	
 
-	[NSTask launchedTaskWithLaunchPath:@"/usr/bin/open" arguments:[NSArray arrayWithObject:@"/tmp/books-export/export.pdf"]];
+- (IBAction) printPDF:(id)sender
+{
+	[pdfView printWithInfo:[NSPrintInfo sharedPrintInfo] autoRotate:YES];
 }
 
-- (IBAction)removeRecords:(id)sender
+- (IBAction) savePDF: (id) sender
 {
-	[selectedRecordsController removeObjects:[selectedRecordsController selectedObjects]];
+	PDFDocument * doc = [pdfView document];
+	
+	NSSavePanel * panel = [NSSavePanel savePanel];
+	[panel setRequiredFileType:@"pdf"];
+	
+	if ([panel runModal] == NSFileHandlingPanelOKButton)
+	{
+		NSString * filename = [panel filename];
+
+		[doc writeToFile:filename];
+	}
+}	
+
+- (void) awakeFromNib
+{
+	[NSApp activateIgnoringOtherApps:YES];
+	
+	NSArray * columns = [recordTable tableColumns];
+	
+	int i = 0;
+	for (i = 0; i < [columns count]; i++)
+	{
+		NSTableColumn * column = [columns objectAtIndex:i];
+		
+		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
+	}
+
+	NSError * error;
+	
+	NSURL * url = [NSURL URLWithString:@"file:///tmp/books-export/books-export.xml"];
+	
+	NSXMLDocument * xml = [[NSXMLDocument alloc] initWithContentsOfURL:url options:NSXMLDocumentTidyXML error:&error];
+
+	if (xml != nil)
+	{
+		NSArray * books = [[xml rootElement] elementsForName:@"Book"];
+		
+		for (i = 0; i < [books count]; i++)
+		{
+			NSXMLElement * book = [books objectAtIndex:i];
+			
+			if (true) // [book 
+			{
+				NSArray * fields = [book elementsForName:@"field"];
+
+				Book * bookObject = [[Book alloc] init];
+
+				int j = 0;
+				for (j = 0; j < [fields count]; j++)
+				{
+					NSXMLElement * field = [fields objectAtIndex:j];
+				
+					NSString * key = [[field attributeForName:@"name"] stringValue];
+					NSString * value = [field stringValue];
+				
+					[bookObject setValue:value forKey:key];
+				}
+			
+				[records addObject:bookObject];
+			}
+		}
+	}
+	else
+	{
+        NSRunAlertPanel (@"Error", @"Unable to locate book data. Check your Books installation.", @"Quit", nil, nil);
+		
+		[NSApp terminate:self];
+	}
 }
 
-- (IBAction)selectRecords:(id)sender
+- (void)windowWillClose:(NSNotification *)aNotification
 {
-	[selectedRecordsController addObjects:[allRecordsController selectedObjects]];
+	[NSApp terminate:self];
 }
 
 - (NSArray *) getPrintStyles
@@ -153,73 +197,20 @@
 
 - (void) setPrintStyles: (NSArray *) styles
 {
+
 }
 
-- (void)windowWillClose:(NSNotification *)aNotification
+/*
+- (IBAction)customizeFields:(id)sender
 {
-	[NSApp terminate:self];
+	[panelWindow makeKeyAndOrderFront:self];
 }
 
-- (void) awakeFromNib
+- (IBAction)doneSelectingFields:(id)sender
 {
-	[NSApp activateIgnoringOtherApps:YES];
-	
-	NSArray * columns = [allRecordsTable tableColumns];
-	
-	int i = 0;
-	for (i = 0; i < [columns count]; i++)
-	{
-		NSTableColumn * column = [columns objectAtIndex:i];
-		
-		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
-	}
-
-	columns = [selectedRecordsTable tableColumns];
-	
-	for (i = 0; i < [columns count]; i++)
-	{
-		NSTableColumn * column = [columns objectAtIndex:i];
-		
-		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
-	}
-
-	NSError * error;
-	
-	NSURL * url = [NSURL URLWithString:@"file:///tmp/books-export/books-export.xml"];
-	
-	NSXMLDocument * xml = [[NSXMLDocument alloc] initWithContentsOfURL:url options:NSXMLDocumentTidyXML error:&error];
-
-	if (xml != nil)
-	{
-		NSArray * books = [[xml rootElement] elementsForName:@"Book"];
-		
-		for (i = 0; i < [books count]; i++)
-		{
-			NSXMLElement * book = [books objectAtIndex:i];
-			NSArray * fields = [book elementsForName:@"field"];
-
-			Book * bookObject = [[Book alloc] init];
-
-			int j = 0;
-			for (j = 0; j < [fields count]; j++)
-			{
-				NSXMLElement * field = [fields objectAtIndex:j];
-				
-				NSString * key = [[field attributeForName:@"name"] stringValue];
-				NSString * value = [field stringValue];
-				
-				[bookObject setValue:value forKey:key];
-			}
-			
-			[allRecordsController addObject:bookObject];
-		}
-	}
-	else
-	{
-        NSRunAlertPanel (@"Error", @"Unable to locate book data. Check your Books installation.", @"Quit", nil, nil);
-		
-		[NSApp terminate:self];
-	}
+	[panelWindow orderOut:self];
 }
+
+*/
 
 @end
