@@ -14,40 +14,12 @@
 		38C6D2BD09A7F48F00F37DCF /* run.sh in Resources */ = {isa = PBXBuildFile; fileRef = 38C6D28C09A7F48E00F37DCF /* run.sh */; };
 		38C6D2BE09A7F48F00F37DCF /* slim-export.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 38C6D28D09A7F48E00F37DCF /* slim-export.xsl */; };
 		38C6D2BF09A7F48F00F37DCF /* resources in Resources */ = {isa = PBXBuildFile; fileRef = 38C6D28E09A7F48E00F37DCF /* resources */; };
-		38C6D2C009A7F48F00F37DCF /* src in Resources */ = {isa = PBXBuildFile; fileRef = 38C6D29F09A7F48F00F37DCF /* src */; };
 		38C6D2C209A7F4A600F37DCF /* web-export.jar in Resources */ = {isa = PBXBuildFile; fileRef = 38C6D28009A7F48E00F37DCF /* web-export.jar */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXBuildStyle section */
-		4A9504CCFFE6A4B311CA0CBA /* Debug */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PREBINDING = NO;
-				ZERO_LINK = YES;
-			};
-			name = Debug;
-		};
-		4A9504CDFFE6A4B311CA0CBA /* Release */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				PREBINDING = NO;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-/* End PBXBuildStyle section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -179,17 +151,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = TemplateExporter_Prefix.pch;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = TemplateExporter;
-				WRAPPER_EXTENSION = app;
-			};
 			dependencies = (
 			);
 			name = TemplateExporter;
@@ -204,12 +165,6 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 38EF390308FB31240094A363 /* Build configuration list for PBXProject "TemplateExporter" */;
-			buildSettings = {
-			};
-			buildStyles = (
-				4A9504CCFFE6A4B311CA0CBA /* Debug */,
-				4A9504CDFFE6A4B311CA0CBA /* Release */,
-			);
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* TemplateExporter */;
 			projectDirPath = "";
@@ -231,7 +186,6 @@
 				38C6D2BD09A7F48F00F37DCF /* run.sh in Resources */,
 				38C6D2BE09A7F48F00F37DCF /* slim-export.xsl in Resources */,
 				38C6D2BF09A7F48F00F37DCF /* resources in Resources */,
-				38C6D2C009A7F48F00F37DCF /* src in Resources */,
 				38C6D2C209A7F4A600F37DCF /* web-export.jar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

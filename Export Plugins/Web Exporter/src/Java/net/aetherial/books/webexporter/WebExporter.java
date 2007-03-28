@@ -1,38 +1,19 @@
 package net.aetherial.books.webexporter;
 
-import java.awt.RenderingHints;
-import java.awt.image.renderable.ParameterBlock;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.awt.*;
+import java.awt.image.renderable.*;
+import java.io.*;
+import java.text.*;
+import java.util.*;
 
-import javax.media.jai.InterpolationNearest;
-import javax.media.jai.JAI;
-import javax.media.jai.OpImage;
-import javax.media.jai.RenderedOp;
-import javax.media.jai.operator.EncodeDescriptor;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import javax.media.jai.*;
+import javax.media.jai.operator.*;
+import javax.xml.parsers.*;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import org.w3c.dom.*;
+import org.xml.sax.*;
 
-import com.sun.media.jai.codec.SeekableStream;
+import com.sun.media.jai.codec.*;
 
 public class WebExporter 
 {
@@ -291,7 +272,38 @@ public class WebExporter
 
 		Object[] authorList = authors.keySet().toArray ();
 
-		Arrays.sort (authorList);
+		// Check for author list sorting and sort appropriately
+		
+		String[] commands = {"/usr/bin/defaults", "read", "net.aetherial.books.Books", "Sort People Names"};
+
+		Process p = Runtime.getRuntime().exec (commands);
+		
+		BufferedReader in = new BufferedReader (new InputStreamReader (p.getInputStream ()));
+
+		boolean authorSort = false;
+		
+		try 
+		{
+			p.waitFor();
+
+			String results = in.readLine ().trim ();
+			
+			System.out.println ("Author sort: "+ results);
+			
+			if (results.equalsIgnoreCase ("Yes"))
+				authorSort = true;
+		}
+		catch (Exception e) 
+		{
+
+		}
+
+		if (authorSort)
+		{
+			Arrays.sort (authorList, new AuthorComparator ());
+		}
+		else
+			Arrays.sort (authorList);
 		
 		String htmlString = getHeader (2, "All Authors");
 
@@ -727,6 +739,9 @@ public class WebExporter
 
 	private static String escape (String string)
 	{
+		if (string == null)
+			string = "Unknown";
+		
 		return string.replaceAll ("<", "&lt;").replaceAll (">", "&gt;").replaceAll ("&amp;", "&").replaceAll ("&", "&amp;");
 	}
 	
