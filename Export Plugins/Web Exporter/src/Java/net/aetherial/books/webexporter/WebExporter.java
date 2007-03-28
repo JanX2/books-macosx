@@ -476,34 +476,37 @@ public class WebExporter
 
 		Element exportData = xmlDocument.getDocumentElement ();
 		
-		NodeList nl = exportData.getChildNodes ();
+		NodeList nl = exportData.getElementsByTagName ("Book");
 		
 		for (int i = 0; i < nl.getLength (); i++)
 		{
 			Element book = (Element) nl.item (i);
-			
-			HashMap<String, String> fields = new HashMap<String, String> ();
-			
-			NodeList fieldElements = book.getChildNodes ();
-			
-			for (int j = 0; j < fieldElements.getLength (); j++)
+
+			if (!(book.getAttribute ("id").equals ("")))
 			{
-				Element field = (Element) fieldElements.item (j);
+				HashMap<String, String> fields = new HashMap<String, String> ();
 				
-				String key = field.getAttribute ("name");
-				String value = field.getTextContent ();
+				NodeList fieldElements = book.getChildNodes ();
 				
-				fields.put (key, value);
+				for (int j = 0; j < fieldElements.getLength (); j++)
+				{
+					Element field = (Element) fieldElements.item (j);
+					
+					String key = field.getAttribute ("name");
+					String value = field.getTextContent ();
+					
+					fields.put (key, value);
+				}
+				
+				fields.put ("id", "" + i);
+	
+				if (fields.get ("genre") == null)
+					fields.put ("genre", "Uncategorized");
+	
+				allBooks.add (fields);
+				
+				writeHTMLPage (fields);
 			}
-			
-			fields.put ("id", "" + i);
-
-			if (fields.get ("genre") == null)
-				fields.put ("genre", "Uncategorized");
-
-			allBooks.add (fields);
-			
-			writeHTMLPage (fields);
 		}
 		
 		System.out.println ("done.");

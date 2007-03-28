@@ -218,8 +218,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -258,11 +256,14 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>1C08E77C0454961000C914BD</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>20</integer>
+									<integer>13</integer>
+									<integer>5</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -285,7 +286,7 @@
 							<real>279</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>60 131 1146 647 0 0 1280 778 </string>
+						<string>58 131 1146 647 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -296,6 +297,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -313,17 +316,17 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3881B9F20BB9E0A10071F4AF</string>
+										<string>3881BA270BBAA8E60071F4AF</string>
 										<key>history</key>
 										<array>
 											<string>38C6D2CD09A7F4CB00F37DCF</string>
 											<string>38565D7709AD18370015C3E7</string>
-											<string>3803F18909B9C74F0020E911</string>
 											<string>380719000BB94EE100BE27E7</string>
 											<string>380719010BB94EE100BE27E7</string>
-											<string>380719030BB94EE100BE27E7</string>
 											<string>3807191B0BB958FB00BE27E7</string>
-											<string>380719230BB9752700BE27E7</string>
+											<string>3881BA220BBAA3510071F4AF</string>
+											<string>3881BA230BBAA3510071F4AF</string>
+											<string>3881BA000BBA5CD70071F4AF</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -335,6 +338,9 @@
 											<string>38643C4909A7F7EF00507E07</string>
 											<string>38643C5009A7F85200507E07</string>
 											<string>380719060BB94EE100BE27E7</string>
+											<string>3881BA010BBA5CD70071F4AF</string>
+											<string>3881BA240BBAA3510071F4AF</string>
+											<string>3881BA250BBAA3510071F4AF</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -348,7 +354,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {845, 402}}</string>
 								<key>RubberWindowFrame</key>
-								<string>60 131 1146 647 0 0 1280 778 </string>
+								<string>58 131 1146 647 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -368,7 +374,7 @@
 								<key>Frame</key>
 								<string>{{0, 407}, {845, 199}}</string>
 								<key>RubberWindowFrame</key>
-								<string>60 131 1146 647 0 0 1280 778 </string>
+								<string>58 131 1146 647 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -529,11 +535,11 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>38974E92095B95B700F1180F</string>
-		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Export Plugins/Web Exporter/TemplateExporter.xcodeproj</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
+		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Export Plugins/Web Exporter/TemplateExporter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>60 131 1146 647 0 0 1280 778 </string>
+	<string>58 131 1146 647 0 0 1280 778 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
@@ -978,7 +984,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

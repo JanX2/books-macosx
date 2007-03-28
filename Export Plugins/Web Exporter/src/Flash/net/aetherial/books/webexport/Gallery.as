@@ -28,46 +28,56 @@ class net.aetherial.books.webexport.Gallery extends MovieClip
 	public function onEnterFrame ()
 	{
 		var me = this;
-		
-		if (xml == undefined)
-		{	
-			refreshButton.onPress = function ()
-			{
-				me.onEnterFrame = me.loadCovers ();
-			}
 
-			coverArray = new Array ();
+		var keyListener:Object = new Object (); 
 
-			coverArray.push (one);
-			coverArray.push (two);
-			coverArray.push (three);
-			coverArray.push (four);
-			coverArray.push (five);
-			coverArray.push (six);
-			coverArray.push (seven);
-			coverArray.push (eight);
+		keyListener.onKeyUp = function () 
+		{ 
+			if (Key.getCode () == Key.ENTER)
+				me.search (me.searchQuery.text);
+		} 
 		
-			xml = new XML ();
+		Key.addListener (keyListener);
+
+		refreshButton.onPress = function ()
+		{
+			me.onEnterFrame = me.loadCovers ();
+		}
+
+		coverArray = new Array ();
+
+		coverArray.push (one);
+		coverArray.push (two);
+		coverArray.push (three);
+		coverArray.push (four);
+		coverArray.push (five);
+		coverArray.push (six);
+		coverArray.push (seven);
+		coverArray.push (eight);
 		
-			xml.onLoad = function (success:Boolean)
-			{
-				var export = this.firstChild;
+		for (var i = 0; i < coverArray.length; i++)
+			coverArray[i]._visible = false;
+		
+		xml = new XML ();
+		
+		xml.onLoad = function (success:Boolean)
+		{
+			var export = this.firstChild;
 			
-				var books = export.childNodes;
+			var books = export.childNodes;
 			
-				me.coverPool = new Array ();
+			me.coverPool = new Array ();
 				
-				for (var i = 0; i < books.length; i++)
+			for (var i = 0; i < books.length; i++)
+			{
+				var book = books[i];
+
+				if (book.nodeName == "Book")			
 				{
-					var book = books[i];
-			
-					var title = undefined;
-					var id = undefined;
-				
 					var hasCover = false;
 					
 					var fields = book.childNodes;
-
+	
 					var coverBook = new Object ();
 			
 					for (var j = 0; j < fields.length; j++)
@@ -87,37 +97,28 @@ class net.aetherial.books.webexport.Gallery extends MovieClip
 						me.coverPool.push (coverBook);
 					}
 				}
-
-				var comp = function (a, b)
-				{
-					if (a.title < b.title)
-						return -1;
-					else if (a.title > b.title)
-						return 1;
-					else
-						return 0;
-				}
-				
-				me.coverPool.sort (comp);
-				
-				me.onEnterFrame = me.loadCovers;
 			}
 
-			me.onEnterFrame = undefined;
+			var comp = function (a, b)
+			{
+				if (a.title < b.title)
+					return -1;
+				else if (a.title > b.title)
+					return 1;
+				else
+					return 0;
+			}
+				
+			me.coverPool.sort (comp);
 			
-			xml.load ("books-export.xml");
+			trace ("xml done");
+				
+			me.onEnterFrame = me.loadCovers;
 		}
 
-		var keyListener:Object = new Object (); 
-
-		keyListener.onKeyUp = function () 
-		{ 
-			if (Key.getCode () == Key.ENTER)
-				me.search (me.searchQuery.text);
-		} 
-		
-		Key.addListener (keyListener);
-
+		xml.load ("books-export.xml");
+		trace ("done");
+		onEnterFrame = undefined;
 	}
 	
 	public function search (query)
@@ -209,7 +210,7 @@ class net.aetherial.books.webexport.Gallery extends MovieClip
 
 		var randomNumbers = new Array ();
 				
-		while (randomNumbers.length < 8)
+		while (randomNumbers.length < 8 && randomNumbers.length < coverPool.length)
 		{
 			var number = Math.round (coverPool.length * Math.random ());
 				
@@ -237,9 +238,13 @@ class net.aetherial.books.webexport.Gallery extends MovieClip
 	public function loadCover (coverPosition, poolIndex)
 	{
 		var book = coverPool[poolIndex];
-				
-		var coverView = coverArray[coverPosition];
 
+		if (book.id == undefined)
+			return;
+			
+		var coverView = coverArray[coverPosition];
+		coverView._visible = true;
+		
 		coverView.cover._x = 0;
 		coverView.cover._y = 0;
 					
@@ -289,6 +294,7 @@ class net.aetherial.books.webexport.Gallery extends MovieClip
 			trace ("ERROR - " + errorCode);
 		}
 				 
+		trace ("loading " + "books/" + coverView.id + "/thumbnail.png");
 		var image_mcl:MovieClipLoader = new MovieClipLoader (); 
 		image_mcl.addListener (mclListener); 
 		image_mcl.loadClip ("books/" + coverView.id + "/thumbnail.png", coverView.cover.image);

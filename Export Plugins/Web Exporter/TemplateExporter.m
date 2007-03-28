@@ -60,6 +60,11 @@
     [progressWindow orderOut:self];
 	[progressIndicator stopAnimation:self];
 	
+	int result = NSRunAlertPanel (@"Site Complete!", @"Your website has been successfully generated.", @"OK", @"View Site", nil);
+	
+	if (result == NSAlertAlternateReturn)
+		[[NSWorkspace sharedWorkspace] openFile:[filePath stringByAppendingString:@"/index.html"]];
+	
 	[[NSApplication sharedApplication] terminate:nil];
 }
 
