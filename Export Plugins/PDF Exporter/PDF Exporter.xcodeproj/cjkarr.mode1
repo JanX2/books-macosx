@@ -317,7 +317,7 @@
 										<key>_historyCapacity</key>
 										<integer>10</integer>
 										<key>bookmark</key>
-										<string>38FC54710BBAD36F000D51FD</string>
+										<string>3846A0B70BBBF07D00A829CA</string>
 										<key>history</key>
 										<array>
 											<string>3812F9B909E06EF60078CA30</string>
@@ -329,7 +329,7 @@
 											<string>38FC54630BBAD340000D51FD</string>
 											<string>38FC546C0BBAD358000D51FD</string>
 											<string>38FC546D0BBAD358000D51FD</string>
-											<string>38FC54620BBAD340000D51FD</string>
+											<string>38FC54710BBAD36F000D51FD</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -342,60 +342,7 @@
 											<string>3812F9BC09E06EF60078CA30</string>
 											<string>389A015F0A8E85F700181B62</string>
 											<string>38FC53B40BBAC539000D51FD</string>
-											<string>38FC53B50BBAC539000D51FD</string>
-											<string>38FC53B60BBAC539000D51FD</string>
-											<string>38FC53B70BBAC539000D51FD</string>
-											<string>38FC53B80BBAC539000D51FD</string>
-											<string>38FC53B90BBAC539000D51FD</string>
-											<string>38FC53BA0BBAC539000D51FD</string>
-											<string>38FC53BB0BBAC539000D51FD</string>
-											<string>38FC53BC0BBAC539000D51FD</string>
-											<string>38FC53BD0BBAC539000D51FD</string>
-											<string>38FC53BE0BBAC539000D51FD</string>
-											<string>38FC53BF0BBAC539000D51FD</string>
-											<string>38FC53C00BBAC539000D51FD</string>
-											<string>38FC53C10BBAC539000D51FD</string>
-											<string>38FC53C20BBAC539000D51FD</string>
-											<string>38FC53C30BBAC539000D51FD</string>
-											<string>38FC53C40BBAC539000D51FD</string>
-											<string>38FC53C50BBAC539000D51FD</string>
-											<string>38FC53C60BBAC539000D51FD</string>
-											<string>38FC53C70BBAC539000D51FD</string>
-											<string>38FC53C80BBAC539000D51FD</string>
-											<string>38FC53C90BBAC539000D51FD</string>
-											<string>38FC53CA0BBAC539000D51FD</string>
-											<string>38FC53CB0BBAC539000D51FD</string>
-											<string>38FC53CC0BBAC539000D51FD</string>
-											<string>38FC53CD0BBAC539000D51FD</string>
-											<string>38FC53CE0BBAC539000D51FD</string>
-											<string>38FC53CF0BBAC539000D51FD</string>
-											<string>38FC53D00BBAC539000D51FD</string>
-											<string>38FC53D10BBAC539000D51FD</string>
-											<string>38FC53D20BBAC539000D51FD</string>
-											<string>38FC53D30BBAC539000D51FD</string>
-											<string>38FC53E50BBAC754000D51FD</string>
-											<string>38FC53E60BBAC754000D51FD</string>
-											<string>38FC53EE0BBAC787000D51FD</string>
-											<string>38FC53EF0BBAC787000D51FD</string>
-											<string>38FC54020BBAC906000D51FD</string>
-											<string>38FC54030BBAC906000D51FD</string>
-											<string>38FC54160BBAC9EC000D51FD</string>
-											<string>38FC54170BBAC9EC000D51FD</string>
-											<string>38FC54180BBAC9EC000D51FD</string>
-											<string>38FC54190BBAC9EC000D51FD</string>
-											<string>38FC541A0BBAC9EC000D51FD</string>
 											<string>38FC541B0BBAC9EC000D51FD</string>
-											<string>38FC542F0BBACC6B000D51FD</string>
-											<string>38FC54370BBACCC7000D51FD</string>
-											<string>38FC54470BBACDA5000D51FD</string>
-											<string>38FC54480BBACDA5000D51FD</string>
-											<string>38FC54490BBACDA5000D51FD</string>
-											<string>38FC544F0BBACDBA000D51FD</string>
-											<string>38FC54650BBAD340000D51FD</string>
-											<string>38FC54660BBAD340000D51FD</string>
-											<string>38FC54670BBAD340000D51FD</string>
-											<string>38FC546E0BBAD358000D51FD</string>
-											<string>38FC546F0BBAD358000D51FD</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -453,9 +400,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>38FC53420BBAB04D000D51FD</string>
+				<string>3846A0B00BBBF01F00A829CA</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>38FC53430BBAB04D000D51FD</string>
+				<string>3846A0B10BBBF01F00A829CA</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -589,12 +536,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>38FC53D50BBAC539000D51FD</string>
-		<string>38FC53D60BBAC539000D51FD</string>
-		<string>386AA5A309B0AAE500A17EFA</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>38FC537F0BBAB72A000D51FD</string>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>386AA58A09B0A7AD00A17EFA</string>
 		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Export Plugins/PDF Exporter/PDF Exporter.xcodeproj</string>
 	</array>
@@ -676,7 +617,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>386AA58A09B0A7AD00A17EFA</string>
-				<string>38FC53460BBAB060000D51FD</string>
+				<string>3846A0B20BBBF01F00A829CA</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -1046,9 +987,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>38FC53480BBAB066000D51FD</string>
+				<string>3846A0B30BBBF01F00A829CA</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>38FC53490BBAB066000D51FD</string>
+				<string>3846A0B40BBBF01F00A829CA</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
@@ -1057,7 +998,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

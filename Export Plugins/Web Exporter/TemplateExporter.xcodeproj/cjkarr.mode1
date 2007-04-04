@@ -316,7 +316,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>3881BA270BBAA8E60071F4AF</string>
+										<string>3846A1040BBBF0B800A829CA</string>
 										<key>history</key>
 										<array>
 											<string>38C6D2CD09A7F4CB00F37DCF</string>
@@ -326,7 +326,7 @@
 											<string>3807191B0BB958FB00BE27E7</string>
 											<string>3881BA220BBAA3510071F4AF</string>
 											<string>3881BA230BBAA3510071F4AF</string>
-											<string>3881BA000BBA5CD70071F4AF</string>
+											<string>3881BA270BBAA8E60071F4AF</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -338,9 +338,6 @@
 											<string>38643C4909A7F7EF00507E07</string>
 											<string>38643C5009A7F85200507E07</string>
 											<string>380719060BB94EE100BE27E7</string>
-											<string>3881BA010BBA5CD70071F4AF</string>
-											<string>3881BA240BBAA3510071F4AF</string>
-											<string>3881BA250BBAA3510071F4AF</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -398,9 +395,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>3881B6D70BB9D46C0071F4AF</string>
+				<string>3846A0FA0BBBF0A400A829CA</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>3881B6D80BB9D46C0071F4AF</string>
+				<string>3846A0FB0BBBF0A400A829CA</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -534,8 +531,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>38974E92095B95B700F1180F</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
+		<string>38974E92095B95B700F1180F</string>
 		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Export Plugins/Web Exporter/TemplateExporter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -577,8 +574,6 @@
 							<string>262pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -618,7 +613,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>38974E92095B95B700F1180F</string>
-				<string>3881B6D90BB9D46C0071F4AF</string>
+				<string>3846A0FC0BBBF0A400A829CA</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -973,9 +968,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>3881B6DA0BB9D46C0071F4AF</string>
+				<string>3846A0FD0BBBF0A400A829CA</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>3881B6DB0BB9D46C0071F4AF</string>
+				<string>3846A0FE0BBBF0A400A829CA</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
