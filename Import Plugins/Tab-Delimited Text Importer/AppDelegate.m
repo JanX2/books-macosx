@@ -95,7 +95,7 @@
 		}
 	}
 	
-	NSLog (@"file contents = --%@--", fileContents);
+	// NSLog (@"file contents = --%@--", fileContents);
 	
 	dataSource = [[TableDataSource alloc] init];
 	

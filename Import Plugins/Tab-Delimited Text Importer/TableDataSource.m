@@ -37,13 +37,17 @@
 		{
 			NSNumber * index = [NSNumber numberWithInt:j];
 
-			[row setObject:[columns objectAtIndex:j] forKey:[index description]];
+			NSString * column = (NSString *) [columns objectAtIndex:j];
+
+			if (column != nil && ![column isEqualToString:@""])
+				[row setObject:[columns objectAtIndex:j] forKey:[index description]];
 			
 			if (count < (j + 1))
 				count = j + 1;
 		}
 		
-		[rows addObject:row];
+		if ([[row allKeys] count] > 0)
+			[rows addObject:row];
 	}
 	
 	mapping = [[NSMutableDictionary alloc] init];
