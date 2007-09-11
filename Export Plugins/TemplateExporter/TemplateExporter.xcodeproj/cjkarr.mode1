@@ -287,7 +287,7 @@
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>139 130 1057 648 0 0 1280 778 </string>
+						<string>239 230 1057 648 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -317,7 +317,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>38F6B73E0C91AAD700EDB72D</string>
+										<string>38DCFE360C9709C00060910A</string>
 										<key>history</key>
 										<array>
 											<string>385FDC9B0904214200C511B9</string>
@@ -326,7 +326,7 @@
 											<string>385FDCBA0904234900C511B9</string>
 											<string>385FDCC9090424E300C511B9</string>
 											<string>38FB6F200978557C007A7F7D</string>
-											<string>38F6B7070C91AA0E00EDB72D</string>
+											<string>38F6B73E0C91AAD700EDB72D</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -350,7 +350,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {849, 427}}</string>
 								<key>RubberWindowFrame</key>
-								<string>139 130 1057 648 0 0 1280 778 </string>
+								<string>239 230 1057 648 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -370,7 +370,7 @@
 								<key>Frame</key>
 								<string>{{0, 432}, {849, 175}}</string>
 								<key>RubberWindowFrame</key>
-								<string>139 130 1057 648 0 0 1280 778 </string>
+								<string>239 230 1057 648 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -394,9 +394,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>38F6B7230C91AA4900EDB72D</string>
+				<string>38DCFE320C9709A20060910A</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>38F6B7240C91AA4900EDB72D</string>
+				<string>38DCFE330C9709A20060910A</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -530,12 +530,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>387468DC096D68CA0016A59A</string>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>/Volumes/iDisk/Documents/Projects/Books Project/Version Controlled/books-macosx/Export Plugins/TemplateExporter/TemplateExporter.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>139 130 1057 648 0 0 1280 778 </string>
+	<string>239 230 1057 648 0 0 1440 878 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>

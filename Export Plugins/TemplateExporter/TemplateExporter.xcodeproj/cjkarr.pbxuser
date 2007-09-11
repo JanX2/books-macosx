@@ -55,8 +55,8 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 210872877;
-			PBXWorkspaceStateSaveDate = 210872877;
+			PBXPerProjectTemplateStateSaveDate = 211224984;
+			PBXWorkspaceStateSaveDate = 211224984;
 		};
 		perUserProjectItems = {
 			385FDC6D09041F6300C511B9 /* PBXTextBookmark */ = 385FDC6D09041F6300C511B9 /* PBXTextBookmark */;
@@ -70,7 +70,7 @@
 			385FDCAF0904222100C511B9 /* PBXTextBookmark */ = 385FDCAF0904222100C511B9 /* PBXTextBookmark */;
 			385FDCBA0904234900C511B9 /* PBXTextBookmark */ = 385FDCBA0904234900C511B9 /* PBXTextBookmark */;
 			385FDCC9090424E300C511B9 /* PBXTextBookmark */ = 385FDCC9090424E300C511B9 /* PBXTextBookmark */;
-			38F6B7070C91AA0E00EDB72D /* PBXTextBookmark */ = 38F6B7070C91AA0E00EDB72D /* PBXTextBookmark */;
+			38DCFE360C9709C00060910A /* PBXTextBookmark */ = 38DCFE360C9709C00060910A /* PBXTextBookmark */;
 			38F6B73E0C91AAD700EDB72D /* PBXTextBookmark */ = 38F6B73E0C91AAD700EDB72D /* PBXTextBookmark */;
 			38FB6F200978557C007A7F7D /* PBXBookmark */ = 38FB6F200978557C007A7F7D /* PBXBookmark */;
 			38FB6F210978557C007A7F7D /* PBXBookmark */ = 38FB6F210978557C007A7F7D /* PBXBookmark */;
@@ -88,9 +88,9 @@
 	};
 	385FDC5D09041E7400C511B9 /* TemplateExporter.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {808, 868}}";
-			sepNavSelRange = "{454, 0}";
-			sepNavVisRect = "{{0, 56}, {808, 395}}";
+			sepNavIntBoundsRect = "{{0, 0}, {808, 930}}";
+			sepNavSelRange = "{241, 0}";
+			sepNavVisRect = "{{0, 0}, {808, 395}}";
 		};
 	};
 	385FDC6D09041F6300C511B9 /* PBXTextBookmark */ = {
@@ -210,6 +210,16 @@
 		vrLen = 37;
 		vrLoc = 0;
 	};
+	38DCFE360C9709C00060910A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 385FDC5D09041E7400C511B9 /* TemplateExporter.m */;
+		name = "TemplateExporter.m: 16";
+		rLen = 0;
+		rLoc = 241;
+		rType = 0;
+		vrLen = 598;
+		vrLoc = 0;
+	};
 	38EF38F408FB311C0094A363 /* TemplateExporter */ = {
 		isa = PBXExecutable;
 		activeArgIndex = 2147483647;
@@ -245,16 +255,6 @@
 	38EF390808FB31240094A363 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
-	};
-	38F6B7070C91AA0E00EDB72D /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 385FDC5D09041E7400C511B9 /* TemplateExporter.m */;
-		name = "TemplateExporter.m: 12";
-		rLen = 0;
-		rLoc = 215;
-		rType = 0;
-		vrLen = 769;
-		vrLoc = 50;
 	};
 	38F6B73E0C91AAD700EDB72D /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
