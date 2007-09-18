@@ -63,6 +63,25 @@ def get_page(url):
 
 
 def get_people(text):
+    """Searches the text contained in a role block to extract the people and
+    build a semi-colon separated list of names.
+
+    get_people should be called with the groupdict values obtained by matching
+    the issue page against the DETAILS regexp.
+
+    >>> writer = '<a href="creator.php?ID=249">Chris Claremont</a>'
+    >>> penciller = '<a href="creator.php?ID=1274">Leinil Francis Yu</a>'
+    >>> letterer = '<a href="creator.php?ID=342">Comicraft</a><br><a href="creator.php?ID=74">Richard Starkings</a>'
+    >>> editor = '<a href="creator.php?ID=232">Robert Harras - \\'Bob\\'</a><br><a href="creator.php?ID=90">Mark Powers</a>'
+    >>> get_people(writer)
+    'Chris Claremont'
+    >>> get_people(penciller)
+    'Leinil Francis Yu'
+    >>> get_people(letterer)
+    'Comicraft; Richard Starkings'
+    >>> get_people(editor)
+    "Robert Harras - 'Bob'; Mark Powers"
+    """
     people = ''
     matches = PERSON.findall(text)
     for match in matches:
@@ -72,6 +91,29 @@ def get_people(text):
 
 
 def merge_people(plist):
+    """Merges the results of get_people into a single list.
+
+    This is needed for fields where multiple ComicBookDB fields relate to a
+    single Books field.
+
+    merge_people should be called with a list containing the return value of
+    get_people.
+
+    >>> writer = '<a href="creator.php?ID=249">Chris Claremont</a>'
+    >>> penciller = '<a href="creator.php?ID=1274">Leinil Francis Yu</a>'
+    >>> inker = '<a href="creator.php?ID=494">Mark Morales</a>'
+    >>> letterer = '<a href="creator.php?ID=342">Comicraft</a><br><a href="creator.php?ID=74">Richard Starkings</a>'
+    >>> editor = '<a href="creator.php?ID=232">Robert Harras - \\'Bob\\'</a><br><a href="creator.php?ID=90">Mark Powers</a>'
+    >>> merge_people([get_people(writer)])
+    'Chris Claremont'
+    >>> merge_people([get_people(penciller), get_people(inker)])
+    'Leinil Francis Yu; Mark Morales'
+    >>> merge_people([get_people(writer), get_people(penciller),
+    ...               get_people(inker)])
+    'Chris Claremont; Leinil Francis Yu; Mark Morales'
+    >>> merge_people([get_people(letterer), get_people(editor)])
+    "Comicraft; Richard Starkings; Robert Harras - 'Bob'; Mark Powers"
+    """
     merged = ''
     for people in plist:
         merged = '%s%s; ' % (merged, people)
@@ -195,5 +237,11 @@ def run():
             print_output(match.groupdict())
 
 
+def test():
+    import doctest
+    doctest.testmod()
+
+
 if __name__ == '__main__':
     run()
+    #test()
