@@ -1,13 +1,26 @@
-﻿#!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """A custom importer for Books that scrapes ComicBookDB
 <http://www.comicbookdb.com/> to download and quickfill comic book data.
+
+VERSION HISTORY:
+
+0.3 -- 2007-09-21 -- First beta release. Now finds all matches. Adds proper
+                     Unicode support. Most aspects of the program documented
+                     and tested with doctests (to run, python -> import
+                     comicBookDB -> comicBookDB.test())
+
+0.2 -- 2007-09-18 -- First alpha release. Returns complete details for a single
+                     issue.
+
+0.1 -- 2007-09-16 -- First pre-alpha release. Only returns images (not issue
+                     details).
 """
 
 
 __author__ = 'Jeff Cousens <jeffreyc@northwestern.edu>'
-__version__ = '0.2'
+__version__ = '0.3'
 __revision__ = '$LastChangedRevision$'
 __date__ = '$LastChangedDate$'
 __copyright__ = 'Copyright (c) 2007 Jeff Cousens'
@@ -34,28 +47,19 @@ ROLES = re.compile(
     '<strong>(?P<role>[^<]+)\(s\):</strong><br>(?P<value>.*?)(?:<br><br>|<br>\ \ \ \ </td>)')
 PUBDATE = re.compile(
     '<a\ href="coverdate.php\?month=\d+&amp;year=\d+">\ (?P<month>\w*)\ (?P<year>\d*)</a>')
-DETAILS = re.compile("""
-    <a\ href="publisher.php\?ID=\d+">(?P<publisher>[^<]*)</a><br>.*
-    (?:<a\ href="(?P<cover>[^"]+)"\ target="_blank">
-       <img\ src="(?P<thumb>[^"]+)"\ alt=""\ width="100"\ border="1"></a><br> |
-       <img\ src="graphics/comic_graphics/nocover.gif"\ alt=""\ width="100"\ border="1"><br>).*
-    <strong>Writer\(s\):</strong><br>(?P<writer>.*)<br><br>
-    <strong>Penciller\(s\):</strong><br>(?P<penciller>.*)<br><br>
-    <strong>Inker\(s\):</strong><br>(?P<inker>.*)<br><br>
-    <strong>Colorist\(s\):</strong><br>(?P<colorist>.*)<br><br>
-    <strong>Letterer\(s\):</strong><br>(?P<letterer>.*)<br><br>
-    <strong>Editor\(s\):</strong><br>(?P<editor>.*)<br><br>
-    <strong>Cover\ Artist\(s\):</strong><br>(?P<artist>.*)<br>\ \ \ \ </td>.*
-    <a\ href="coverdate.php\?month=\d+&amp;year=\d+">
-    \ (?P<month>\w*)\ (?P<year>\d*)</a>""",
-    re.DOTALL | re.VERBOSE)
 PERSON = re.compile('<a href="\w+.php\?ID=\d+">([^<]+)</a>')
 
 
 def add_field(doc, parent, name, value):
+    """Adds a field element to parent.
+
+    Uses doc to create a new "field" element with a name attribute with a
+    value of name and a child text node with the contents of value and
+    attaches it as a child of parent.
+    """
     field = doc.createElement('field')
     field.setAttribute('name', name)
-    text = doc.createTextNode(value.decode('iso-8859-1'))
+    text = doc.createTextNode(value.decode('utf-8'))
     field.appendChild(text)
     parent.appendChild(field)
 
@@ -102,7 +106,7 @@ def get_issue_details(title_id, issue_number):
 
     issue_details = get_page(
             'http://www.comicbookdb.com/issue.php?ID=%s' % issue_id)
-    
+
     match = {'issue_id': issue_id}
     mo = PUBLISHER.search(issue_details)
     if mo:
@@ -116,9 +120,9 @@ def get_issue_details(title_id, issue_number):
     matches = ROLES.findall(issue_details)
     for m in matches:
         # match looks like ('role', 'value')
-        if m[0] == 'Cover Artist':
+        if m[0] == 'Cover Artist' and not match.has_key('artist'):
             match['artist'] = m[1]
-        else:
+        elif not match.has_key(m[0].lower()):
             match[m[0].lower()] = m[1]
     mo = PUBDATE.search(issue_details)
     if mo:
@@ -131,6 +135,7 @@ def get_issue_details(title_id, issue_number):
 
 def get_issue_id(title_id, issue_number):
     """Searches the list of issues for a title to find an issue's id.
+
         >>> get_issue_id(84, '3')
         '15903'
         >>> get_issue_id(593, '100')
@@ -152,7 +157,12 @@ def get_issue_id(title_id, issue_number):
 
     return issue_id
 
+
 def get_page(url):
+    """Wraps a urllib2 HTTP request.
+
+    Returns the text content of the page.
+    """
     req = urllib2.Request(url)
     resp = urllib2.urlopen(req)
     return resp.read()
@@ -163,7 +173,7 @@ def get_people(text):
     build a semi-colon separated list of names.
 
     get_people should be called with the groupdict values obtained by matching
-    the issue page against the DETAILS regexp.
+    the issue page against the ROLES regexp.
 
         >>> writer = '<a href="creator.php?ID=249">Chris Claremont</a>'
         >>> penciller = '<a href="creator.php?ID=1274">Leinil Francis Yu</a>'
@@ -213,8 +223,12 @@ def merge_people(plist):
         >>> 
     """
     merged = ''
+    mlist = []
     for people in plist:
-        merged = '%s%s; ' % (merged, people)
+        for person in people.split('; '):
+            if person not in mlist:
+                merged = '%s%s; ' % (merged, person)
+                mlist.append(person)
     return merged.rstrip().rstrip(';')
 
 
@@ -285,8 +299,10 @@ def parse_books_quickfill():
         field.normalize()
 
         if field.firstChild != None:
-            data = str(field.firstChild.data.replace(
-                    '&', '').replace('(', '').replace(')', ''))
+            try:
+                data = str(field.firstChild.data)
+            except UnicodeEncodeError:
+                data = field.firstChild.data
             if field.getAttribute('name') == 'title':
                 (title, issue_number) = data.split('#')
                 title = title.rstrip()
@@ -298,6 +314,14 @@ def parse_books_quickfill():
 
 
 def print_output(title='', title_ids=[], issue_number=''):
+    """Walks a list of title IDs, gets issue details and prints a Books XML
+    import file.
+
+    Books plugins operate by parsing /tmp/books-quickfill.xml and printing
+    Books import XML to stdout.
+
+    If called with no arguments, will print an empty file.
+    """
     doc = Document()
     root = doc.createElement('importedData')
     doc.appendChild (root)
@@ -466,10 +490,12 @@ def query():
 
 
 def test():
+    """Executes doctests for comicBookDB module.
+    """
     import doctest
     doctest.testmod()
 
 
 if __name__ == '__main__':
     query()
-    #test()
+
