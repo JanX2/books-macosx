@@ -16,6 +16,14 @@ VERSION HISTORY:
 
 0.1 -- 2007-09-16 -- First pre-alpha release. Only returns images (not issue
                      details).
+
+LICENSE:
+
+This work is licensed under the Creative Commons Attribution-Share Alike 3.0
+Unported License. To view a copy of this license, visit
+http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative
+Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+
 """
 
 
@@ -24,6 +32,7 @@ __version__ = '0.3'
 __revision__ = '$LastChangedRevision$'
 __date__ = '$LastChangedDate$'
 __copyright__ = 'Copyright (c) 2007 Jeff Cousens'
+__license__ = 'Creative Commons Attribution-Share Alike'
 
 
 import re
