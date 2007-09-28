@@ -79,6 +79,8 @@
 	[save setEnabled:YES];
 	[print setEnabled:YES];
 	[status setStringValue:[NSString stringWithFormat:@"%d Pages", [doc pageCount]]];
+	
+	[pdfView setNeedsDisplay:YES];
 }	
 
 - (IBAction) printPDF:(id)sender

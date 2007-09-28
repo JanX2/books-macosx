@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3812C93C0CAC96BC0086F056 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 3812C9390CAC96BC0086F056 /* Fonts */; };
+		3812CAB20CAC98580086F056 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 3812CAB10CAC98580086F056 /* config.xml */; };
 		3812F99E09E06E230078CA30 /* Summary (8.5" x 11").xsl in Resources */ = {isa = PBXBuildFile; fileRef = 3812F99D09E06E230078CA30 /* Summary (8.5" x 11").xsl */; };
 		3854281E09DAC679002EEA90 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3854281D09DAC679002EEA90 /* Credits.rtf */; };
 		386AA59009B0A82900A17EFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 386AA58E09B0A82900A17EFA /* AppDelegate.m */; };
@@ -31,6 +33,8 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* PDF Exporter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PDF Exporter_Prefix.pch"; sourceTree = "<group>"; };
+		3812C9390CAC96BC0086F056 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
+		3812CAB10CAC98580086F056 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		3812F99D09E06E230078CA30 /* Summary (8.5" x 11").xsl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = "Summary (8.5\" x 11\").xsl"; sourceTree = "<group>"; };
 		3854281D09DAC679002EEA90 /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		386AA58E09B0A82900A17EFA /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3812CAB10CAC98580086F056 /* config.xml */,
 				3854281D09DAC679002EEA90 /* Credits.rtf */,
 				38747EBE09DA18F00013A806 /* Script */,
 				38F2B05F09D9801800E69477 /* PDF Styles */,
@@ -145,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				38747ECF09DA19AC0013A806 /* run.sh */,
+				3812C9390CAC96BC0086F056 /* Fonts */,
 				38747EC309DA19A30013A806 /* fop-jars */,
 			);
 			name = Script;
@@ -208,6 +214,8 @@
 				38747ED009DA19AC0013A806 /* run.sh in Resources */,
 				3854281E09DAC679002EEA90 /* Credits.rtf in Resources */,
 				3812F99E09E06E230078CA30 /* Summary (8.5" x 11").xsl in Resources */,
+				3812C93C0CAC96BC0086F056 /* Fonts in Resources */,
+				3812CAB20CAC98580086F056 /* config.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

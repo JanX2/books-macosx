@@ -10,6 +10,14 @@ done
 
 rm "$3"
 
-/usr/bin/java -cp $CLASSPATH org.apache.fop.cli.Main /tmp/books-export/output.fo "$3"
+echo `pwd`
+
+if [ -e ../../../../../../Fonts/ARIALUNI*.TTF ] ; then
+	/usr/bin/java -cp $CLASSPATH org.apache.fop.cli.Main -c config.xml /tmp/books-export/output.fo "$3"
+elif [ -e /Library/Fonts/ARIALUNI*.TTF ] ; then 
+	/usr/bin/java -cp $CLASSPATH org.apache.fop.cli.Main -c config.xml /tmp/books-export/output.fo "$3"
+else
+	/usr/bin/java -cp $CLASSPATH org.apache.fop.cli.Main /tmp/books-export/output.fo "$3"
+fi
 
 rm /tmp/books-export/output.fo
