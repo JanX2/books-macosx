@@ -6,6 +6,12 @@
 
 VERSION HISTORY:
 
+0.4 -- 2007-09-30 -- Now returns multiple covers when an issue has alternate
+                     covers. Removed empty issue details when a title does not
+                     have an issue. Now merges roles when multiple role
+                     entries are found. Addressed yet another Unicode issue.
+                     Added version to output.
+
 0.3 -- 2007-09-21 -- First beta release. Now finds all matches. Adds proper
                      Unicode support. Most aspects of the program documented
                      and tested with doctests (to run, python -> import
@@ -28,7 +34,7 @@ Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
 
 
 __author__ = 'Jeff Cousens <jeffreyc@northwestern.edu>'
-__version__ = '0.3'
+__version__ = '0.4'
 __revision__ = '$LastChangedRevision$'
 __date__ = '$LastChangedDate$'
 __copyright__ = 'Copyright (c) 2007 Jeff Cousens'
@@ -48,6 +54,7 @@ INVALID = ['(Story is monochromatic)', '(Typeset)']
 TITLE = re.compile(
         '<a href="title.php\?ID=(\d+)">([^(]+) \((\d+)\)</a> \(([^)]+)\)')
 ISSUE = re.compile('<a href="issue.php\?ID=(\d+)">(\d+)</a><br>')
+ALT_ISSUES = re.compile('<a\ href="issue.php\?ID=(\d+)">')
 PUBLISHER = re.compile(
     '<a\ href="publisher.php\?ID=\d+">(?P<publisher>[^<]*)</a><br>')
 IMAGES = re.compile(
@@ -68,7 +75,10 @@ def add_field(doc, parent, name, value):
     """
     field = doc.createElement('field')
     field.setAttribute('name', name)
-    text = doc.createTextNode(value.decode('utf-8'))
+    try:
+        text = doc.createTextNode(value.decode('utf-8'))
+    except UnicodeDecodeError:
+        text = doc.createTextNode(value.decode('iso-8859-1'))
     field.appendChild(text)
     parent.appendChild(field)
 
@@ -79,84 +89,95 @@ def get_issue_details(title_id, issue_number):
     Returns a Match Object.
 
         >>> match = get_issue_details(593, '100')
-        >>> match['publisher']
+        >>> match[0]['publisher']
         'Marvel Comics'
-        >>> match['cover']
+        >>> match[0]['cover']
         'graphics/comic_graphics/1/56/4223_20060327032452_large.jpg'
-        >>> match['thumb']
+        >>> match[0]['thumb']
         'graphics/comic_graphics/1/56/4223_20060327032452_thumb.jpg'
-        >>> match['writer']
+        >>> match[0]['writer']
         '<a href="creator.php?ID=249">Chris Claremont</a>'
-        >>> match['penciller']
+        >>> match[0]['penciller']
         '<a href="creator.php?ID=1274">Leinil Francis Yu</a>'
-        >>> match['inker']
+        >>> match[0]['inker']
         '<a href="creator.php?ID=494">Mark Morales</a>'
-        >>> match['colorist']
+        >>> match[0]['colorist']
         '<a href="creator.php?ID=1828">Liquid!</a>'
-        >>> match['letterer']
+        >>> match[0]['letterer']
         '<a href="creator.php?ID=342">Comicraft</a><br><a href="creator.php?ID=74">Richard Starkings</a>'
-        >>> match['editor']
+        >>> match[0]['editor']
         '<a href="creator.php?ID=232">Robert Harras - \\'Bob\\'</a><br><a href="creator.php?ID=90">Mark Powers</a>'
-        >>> match['artist']
+        >>> match[0]['artist']
         '<a href="creator.php?ID=407">Arthur Adams - \\'Art\\'</a>'
-        >>> match['year']
+        >>> match[0]['year']
         '2000'
-        >>> match['month']
+        >>> match[0]['month']
         'May'
         >>> match = get_issue_details(84, '3')
-        >>> match['artist']
+        >>> match[0]['artist']
         '<a href="creator.php?ID=212">Sergio Aragon\\xe9s</a>'
         >>> 
     """
-    issue_id = get_issue_id(title_id, issue_number)
+    issue_list = get_issue_id(title_id, issue_number)
 
-    if not issue_id:
-        return {'issue_id': '0'}
+    if not issue_list:
+        return [{'issue_id': '0'}]
 
-    issue_details = get_page(
-            'http://www.comicbookdb.com/issue.php?ID=%s' % issue_id)
+    match_list = []
 
-    match = {'issue_id': issue_id}
-    mo = PUBLISHER.search(issue_details)
-    if mo:
-        mod = mo.groupdict()
-        match['publisher'] = mod['publisher']
-    mo = IMAGES.search(issue_details)
-    if mo:
-        mod = mo.groupdict()
-        match['cover'] = mod['cover']
-        match['thumb'] = mod['thumb']
-    matches = ROLES.findall(issue_details)
-    for m in matches:
-        # match looks like ('role', 'value')
-        if m[0] == 'Cover Artist' and not match.has_key('artist'):
-            match['artist'] = m[1]
-        elif not match.has_key(m[0].lower()):
-            match[m[0].lower()] = m[1]
-    mo = PUBDATE.search(issue_details)
-    if mo:
-        mod = mo.groupdict()
-        match['month'] = mod['month']
-        match['year'] = mod['year']
+    for issue_id in issue_list:
+        issue_details = get_page(
+                'http://www.comicbookdb.com/issue.php?ID=%s' % issue_id)
 
-    return match
+        match = {'issue_id': issue_id}
+        mo = PUBLISHER.search(issue_details)
+        if mo:
+            mod = mo.groupdict()
+            match['publisher'] = mod['publisher']
+        mo = IMAGES.search(issue_details)
+        if mo:
+            mod = mo.groupdict()
+            match['cover'] = mod['cover']
+            match['thumb'] = mod['thumb']
+        matches = ROLES.findall(issue_details)
+        for m in matches:
+            # match looks like ('role', 'value')
+            if m[0] == 'Cover Artist':
+                if not match.has_key('artist'):
+                    match['artist'] = m[1]
+                else:
+                    match['artist'] += m[1]
+            else:
+                if not match.has_key(m[0].lower()):
+                    match[m[0].lower()] = m[1]
+                else:
+                    match[m[0].lower()] += m[1]
+        mo = PUBDATE.search(issue_details)
+        if mo:
+            mod = mo.groupdict()
+            match['month'] = mod['month']
+            match['year'] = mod['year']
+
+        match_list.append(match)
+
+    return match_list
 
 
 def get_issue_id(title_id, issue_number):
     """Searches the list of issues for a title to find an issue's id.
 
         >>> get_issue_id(84, '3')
-        '15903'
+        ['15903']
         >>> get_issue_id(593, '100')
-        '4223'
+        ['4223', '75579', '75586', '75584', '75578', '75581', '75577', '75583', '75582']
         >>> 
     """
     issue_id = 0
 
-    issue_list = get_page(
+    issue_page = get_page(
             'http://www.comicbookdb.com/title.php?ID=%s' % title_id)
 
-    matches = ISSUE.findall(issue_list)
+    matches = ISSUE.findall(issue_page)
 
     for match in matches:
         # match looks like ('issue_id', 'issue_number')
@@ -164,7 +185,18 @@ def get_issue_id(title_id, issue_number):
             issue_id = match[0]
             break
 
-    return issue_id
+    issue_list = [issue_id]
+
+    alternate_covers = re.search(
+        '<tbody id="issue_%s" style="display: none;">(.*?)</tbody>' % issue_id,
+        issue_page,
+        re.S)
+
+    if alternate_covers:
+        matches = ALT_ISSUES.findall(alternate_covers.groups()[0])
+        issue_list += matches
+
+    return issue_list
 
 
 def get_page(url):
@@ -338,46 +370,57 @@ def print_output(title='', title_ids=[], issue_number=''):
     if (title_ids):
         collection = doc.createElement('List')
         collection.setAttribute('name', 'ComicBookDB Import')
+        collection.setAttribute('version', __version__)
         root.appendChild(collection)
 
         for title_id in title_ids:
 
-            match = get_issue_details(title_id, issue_number)
+            matches = get_issue_details(title_id, issue_number)
 
-            book = doc.createElement('Book')
-            book.setAttribute('title', title)
+            if matches[0]['issue_id'] == '0':
+                continue
 
-            add_field(doc, book, 'title', '%s #%s' % (title, issue_number))
-            if match.has_key('writer') and match['writer']:
-                add_field(doc, book, 'authors', get_people(match['writer']))
-            if (match.has_key('penciller') and match['penciller'] and
-                match.has_key('inker') and match['inker']):
-                add_field(doc, book, 'illustrators',
-                          merge_people([get_people(match['penciller']),
-                                        get_people(match['inker'])]))
-            elif match.has_key('penciller') and match['penciller']:
-                add_field(doc, book, 'illustrators',
-                          get_people(match['penciller']))
-            elif match.has_key('inker') and match['inker']:
-                add_field(doc, book, 'illustrators', get_people(match['inker']))
-            if match.has_key('editor') and match['editor']:
-                add_field(doc, book, 'editor', get_people(match['editor']))
-            if match.has_key('publisher') and match['publisher']:
-                add_field(doc, book, 'publisher', match['publisher'])
-            if (match.has_key('year') and match['year'] and
-                match.has_key('month') and match['month']):
-                add_field(doc, book, 'publishDate',
-                          '%s 1, %s' % (match['month'], match['year']))
-            elif match.has_key('year') and match['year']:
-                add_field(doc, book, 'publishDate', 'January 1, %s' % match['year'])
-            if match.has_key('cover') and match['cover']:
-                add_field(doc, book, 'CoverImageURL',
-                          'http://www.comicbookdb.com/%s' % match['cover'])
-            add_field(doc, book, 'link',
-                      'http://www.comicbookdb.com/issue.php?ID=%s' % (
-                      match['issue_id']))
+            for match in matches:
 
-            collection.appendChild(book)
+                book = doc.createElement('Book')
+                book.setAttribute('title', title)
+
+                add_field(doc, book, 'title', '%s #%s' % (title, issue_number))
+                add_field(doc, book, 'series', title)
+                if match.has_key('writer') and match['writer']:
+                    add_field(doc, book, 'authors',
+                              merge_people([get_people(match['writer'])]))
+                if (match.has_key('penciller') and match['penciller'] and
+                    match.has_key('inker') and match['inker']):
+                    add_field(doc, book, 'illustrators',
+                              merge_people([get_people(match['penciller']),
+                                            get_people(match['inker'])]))
+                elif match.has_key('penciller') and match['penciller']:
+                    add_field(doc, book, 'illustrators',
+                              merge_people([get_people(match['penciller'])]))
+                elif match.has_key('inker') and match['inker']:
+                    add_field(doc, book, 'illustrators',
+                              merge_people([get_people(match['inker'])]))
+                if match.has_key('editor') and match['editor']:
+                    add_field(doc, book, 'editor',
+                              merge_people([get_people(match['editor'])]))
+                if match.has_key('publisher') and match['publisher']:
+                    add_field(doc, book, 'publisher', match['publisher'])
+                if (match.has_key('year') and match['year'] and
+                    match.has_key('month') and match['month']):
+                    add_field(doc, book, 'publishDate',
+                              '%s 1, %s' % (match['month'], match['year']))
+                elif match.has_key('year') and match['year']:
+                    add_field(doc, book,
+                              'publishDate', 'January 1, %s' % match['year'])
+                if match.has_key('cover') and match['cover']:
+                    add_field(doc, book, 'CoverImageURL',
+                              'http://www.comicbookdb.com/%s' % match['cover'])
+                add_field(doc, book, 'link',
+                          'http://www.comicbookdb.com/issue.php?ID=%s' % (
+                          match['issue_id']))
+
+                collection.appendChild(book)
 
     print doc.toprettyxml(encoding='UTF-8', indent='  ').rstrip()
 
@@ -387,12 +430,15 @@ def print_output(title='', title_ids=[], issue_number=''):
 def query():
     """Queries ComicBookDB to get issue details.
 
+    This doctest is broken :(  It needs to dynamically replace the version
+    string.
+
         >>> GROO = '''<Book>
         ...   <field name="title">Groo the Wanderer #3</field>
         ...   <field name="publisher">Pacific Comics</field>
         ... </Book>'''
         >>> XMEN = '''<Book>
-        ...   <field name="title">X-Men #100</field>
+        ...   <field name="title">X-Men #188</field>
         ...   <field name="publisher">Marvel Comics</field>
         ... </Book>'''
         >>> file = open('/tmp/books-quickfill.xml', 'w')
@@ -401,10 +447,13 @@ def query():
         >>> query()
         <?xml version="1.0" encoding="UTF-8"?>
         <importedData>
-          <List name="ComicBookDB Import">
+          <List name="ComicBookDB Import" version="0.4">
             <Book title="Groo the Wanderer">
               <field name="title">
                 Groo the Wanderer #3
+              </field>
+              <field name="series">
+                Groo the Wanderer
               </field>
               <field name="publisher">
                 Pacific Comics
@@ -423,11 +472,14 @@ def query():
               <field name="title">
                 Groo the Wanderer #3
               </field>
+              <field name="series">
+                Groo the Wanderer
+              </field>
               <field name="authors">
                 Mark Evanier
               </field>
               <field name="illustrators">
-                Sergio Aragonés; Sergio Aragonés
+                Sergio Aragonés
               </field>
               <field name="publishDate">
                 May 1, 1985
@@ -447,31 +499,63 @@ def query():
         >>> query()
         <?xml version="1.0" encoding="UTF-8"?>
         <importedData>
-          <List name="ComicBookDB Import">
+          <List name="ComicBookDB Import" version="0.4">
             <Book title="X-Men">
               <field name="title">
-                X-Men #100
+                X-Men #188
+              </field>
+              <field name="series">
+                X-Men
               </field>
               <field name="authors">
-                Chris Claremont
+                Mike Carey
               </field>
               <field name="illustrators">
-                Leinil Francis Yu; Mark Morales
+                Chris Bachalo; Jaime Mendoza; Tim Townsend
               </field>
               <field name="editor">
-                Robert Harras - 'Bob'; Mark Powers
+                Mike Marts
               </field>
               <field name="publisher">
                 Marvel Comics
               </field>
               <field name="publishDate">
-                May 1, 2000
+                September 1, 2006
               </field>
               <field name="CoverImageURL">
-                http://www.comicbookdb.com/graphics/comic_graphics/1/56/4223_20060327032452_large.jpg
+                http://www.comicbookdb.com/graphics/comic_graphics/1/95/51001_20060713214406_large.jpg
               </field>
               <field name="link">
-                http://www.comicbookdb.com/issue.php?ID=4223
+                http://www.comicbookdb.com/issue.php?ID=51001
+              </field>
+            </Book>
+            <Book title="X-Men">
+              <field name="title">
+                X-Men #188
+              </field>
+              <field name="series">
+                X-Men
+              </field>
+              <field name="authors">
+                Mike Carey
+              </field>
+              <field name="illustrators">
+                Chris Bachalo; Jaime Mendoza; Tim Townsend
+              </field>
+              <field name="editor">
+                Mike Marts
+              </field>
+              <field name="publisher">
+                Marvel Comics
+              </field>
+              <field name="publishDate">
+                September 1, 2006
+              </field>
+              <field name="CoverImageURL">
+                http://www.comicbookdb.com/graphics/comic_graphics/1/154/77478_20061231044347_large.jpg
+              </field>
+              <field name="link">
+                http://www.comicbookdb.com/issue.php?ID=77478
               </field>
             </Book>
           </List>
