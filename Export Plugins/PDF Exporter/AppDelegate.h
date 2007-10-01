@@ -16,6 +16,9 @@
 	NSMutableDictionary * stylesTable;
 	
 	IBOutlet NSArrayController * records;
+	
+	IBOutlet NSTableColumn * titleColumn;
+	IBOutlet NSTableColumn * authorsColumn;
 }
 
 - (IBAction) createPDF: (id) sender;

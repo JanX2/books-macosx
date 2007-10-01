@@ -5,6 +5,7 @@
             CLASS = AppDelegate; 
             LANGUAGE = ObjC; 
             OUTLETS = {
+                authorsColumn = NSTableColumn; 
                 pdfView = PDFView; 
                 print = NSButton; 
                 recordTable = NSTableView; 
@@ -13,6 +14,7 @@
                 search = NSSearchField; 
                 status = NSTextField; 
                 stylesMenu = id; 
+                titleColumn = NSTableColumn; 
             }; 
             SUPERCLASS = NSObject; 
         }, 

@@ -3,6 +3,64 @@
 
 @implementation AppDelegate
 
+- (NSString *) getAuthorString:(NSString *) authors
+{
+	NSArray * separators = [NSArray arrayWithObjects:@";", @",", @"/", nil];
+	
+	NSMutableString * sortString = [[NSMutableString alloc] initWithString:authors];
+
+	NSRange range;
+
+	int i = 0;
+	for (i = 0; i < [separators count]; i++)
+	{
+		range = [sortString rangeOfString:[separators objectAtIndex:i]];
+		
+		if (range.location != NSNotFound)
+			[sortString setString:[authors substringToIndex:range.location]];
+	}
+
+	range = [sortString rangeOfString:@" " options:NSBackwardsSearch];
+	
+	if (range.location != NSNotFound)
+	{
+		NSString * lastName = [sortString substringFromIndex:range.location + 1];
+		[sortString deleteCharactersInRange:NSMakeRange (range.location, [lastName length] + 1)];
+		[sortString insertString:@" " atIndex:0];
+		[sortString insertString:lastName atIndex:0];
+	}
+	
+	NSLog (@"%@ -> %@", authors, sortString);
+	
+	return sortString;
+}
+
+- (NSString *) getTitleString:(NSString *) title
+{
+	NSArray * ignoreWords = [NSArray arrayWithObjects:@"the ", @"an ", @"a ", nil];
+
+	int i = 0; 
+	for (i = 0; i < [ignoreWords count]; i++)
+	{
+		NSString * ignore = (NSString *) [ignoreWords objectAtIndex:i];
+
+		if ([title length] > [ignore length])
+		{
+			NSRange range = [title rangeOfString:ignore options:NSCaseInsensitiveSearch range:NSMakeRange (0, [ignore length])];
+
+			if (range.location == 0)
+			{
+				NSString * sortString = [[NSString alloc] initWithString:[title substringFromIndex:[ignore length]]];
+				NSLog (@"%@ -> %@", title, sortString);
+				return sortString;
+			}
+		}
+	}
+	
+	return title;
+}
+
+
 - (IBAction)exportPDF:(id)sender
 {
 	NSArray * books = [records arrangedObjects];
@@ -145,11 +203,29 @@
 					NSString * key = [[field attributeForName:@"name"] stringValue];
 					NSString * value = [field stringValue];
 				
+					if ([key isEqualToString:@"title"])
+						[bookObject setValue:[self getTitleString:value] forKey:@"smartTitle"];
+					else if ([key isEqualToString:@"authors"])
+						[bookObject setValue:[self getAuthorString:value] forKey:@"smartAuthors"];
+				
 					[bookObject setValue:value forKey:key];
 				}
 			
 				[records addObject:bookObject];
 			}
+		}
+		
+		[[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"Smart Sort" options:NSKeyValueObservingOptionNew context:NULL];
+
+		if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Smart Sort"])
+		{
+			[authorsColumn setSortDescriptorPrototype:[[NSSortDescriptor alloc] initWithKey:@"smartAuthors" ascending:YES selector:@selector (compare:)]];
+			[titleColumn setSortDescriptorPrototype:[[NSSortDescriptor alloc] initWithKey:@"smartTitle" ascending:YES selector:@selector (compare:)]];
+		}
+		else
+		{
+			[authorsColumn setSortDescriptorPrototype:[[NSSortDescriptor alloc] initWithKey:@"authors" ascending:YES selector:@selector (compare:)]];
+			[titleColumn setSortDescriptorPrototype:[[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES selector:@selector (compare:)]];
 		}
 	}
 	else
@@ -157,6 +233,26 @@
         NSRunAlertPanel (@"Error", @"Unable to locate book data. Check your Books installation.", @"Quit", nil, nil);
 		
 		[NSApp terminate:self];
+	}
+}
+
+- (void) observeValueForKeyPath: (NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
+	context:(void *)context
+{
+    if ([keyPath isEqual:@"Smart Sort"])
+	{
+		if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Smart Sort"])
+		{
+			[authorsColumn setSortDescriptorPrototype:[[NSSortDescriptor alloc] initWithKey:@"smartAuthors" ascending:YES selector:@selector (compare:)]];
+			[titleColumn setSortDescriptorPrototype:[[NSSortDescriptor alloc] initWithKey:@"smartTitle" ascending:YES selector:@selector (compare:)]];
+		}
+		else
+		{
+			[authorsColumn setSortDescriptorPrototype:[[NSSortDescriptor alloc] initWithKey:@"authors" ascending:YES selector:@selector (compare:)]];
+			[titleColumn setSortDescriptorPrototype:[[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES selector:@selector (compare:)]];
+		}
+		
+		NSLog (@"smart sort");
 	}
 }
 
