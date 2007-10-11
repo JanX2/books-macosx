@@ -15,6 +15,7 @@
 		386AA5BC09B0ACD600A17EFA /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 386AA5BB09B0ACD600A17EFA /* icon.icns */; };
 		38747ECE09DA19A30013A806 /* fop-jars in Resources */ = {isa = PBXBuildFile; fileRef = 38747EC309DA19A30013A806 /* fop-jars */; };
 		38747ED009DA19AC0013A806 /* run.sh in Resources */ = {isa = PBXBuildFile; fileRef = 38747ECF09DA19AC0013A806 /* run.sh */; };
+		38A7D7B70CBE582000AEB11D /* config-cyberbit.xml in Resources */ = {isa = PBXBuildFile; fileRef = 38A7D7B60CBE582000AEB11D /* config-cyberbit.xml */; };
 		38C7005709B3C625004EA9B5 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C7005609B3C625004EA9B5 /* Book.m */; };
 		38F2B06209D9803A00E69477 /* List (8.5" x 11").xsl in Resources */ = {isa = PBXBuildFile; fileRef = 38F2B06109D9803A00E69477 /* List (8.5" x 11").xsl */; };
 		38FC53690BBAB6C7000D51FD /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FC53680BBAB6C7000D51FD /* Quartz.framework */; };
@@ -42,6 +43,7 @@
 		386AA5BB09B0ACD600A17EFA /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		38747EC309DA19A30013A806 /* fop-jars */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "fop-jars"; sourceTree = "<group>"; };
 		38747ECF09DA19AC0013A806 /* run.sh */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; path = run.sh; sourceTree = "<group>"; };
+		38A7D7B60CBE582000AEB11D /* config-cyberbit.xml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = "config-cyberbit.xml"; sourceTree = "<group>"; };
 		38C7005509B3C625004EA9B5 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
 		38C7005609B3C625004EA9B5 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
 		38F2B06109D9803A00E69477 /* List (8.5" x 11").xsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "List (8.5\" x 11\").xsl"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				38A7D7B60CBE582000AEB11D /* config-cyberbit.xml */,
 				3812CAB10CAC98580086F056 /* config.xml */,
 				3854281D09DAC679002EEA90 /* Credits.rtf */,
 				38747EBE09DA18F00013A806 /* Script */,
@@ -216,6 +219,7 @@
 				3812F99E09E06E230078CA30 /* Summary (8.5" x 11").xsl in Resources */,
 				3812C93C0CAC96BC0086F056 /* Fonts in Resources */,
 				3812CAB20CAC98580086F056 /* config.xml in Resources */,
+				38A7D7B70CBE582000AEB11D /* config-cyberbit.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

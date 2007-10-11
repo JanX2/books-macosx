@@ -17,7 +17,8 @@
 				</fo:simple-page-master>
 			</fo:layout-master-set>
 
-			<fo:page-sequence master-reference="Letter" font-family="Arial,Helvetica">
+			<fo:page-sequence master-reference="Letter" font-family="Cyberbit, Arial">
+			<!-- <fo:page-sequence master-reference="Letter" font-family="Cyberbit,Arial,Helvetica"> -->
 				<!-- <fo:static-content flow-name="xsl-region-before">
 					<fo:block text-align="right">Generated on <xsl:value-of select="$date"/></fo:block>
 				</fo:static-content> -->

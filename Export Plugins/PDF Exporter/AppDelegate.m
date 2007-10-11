@@ -30,8 +30,6 @@
 		[sortString insertString:lastName atIndex:0];
 	}
 	
-	NSLog (@"%@ -> %@", authors, sortString);
-	
 	return sortString;
 }
 
@@ -51,7 +49,6 @@
 			if (range.location == 0)
 			{
 				NSString * sortString = [[NSString alloc] initWithString:[title substringFromIndex:[ignore length]]];
-				NSLog (@"%@ -> %@", title, sortString);
 				return sortString;
 			}
 		}
@@ -251,8 +248,6 @@
 			[authorsColumn setSortDescriptorPrototype:[[NSSortDescriptor alloc] initWithKey:@"authors" ascending:YES selector:@selector (compare:)]];
 			[titleColumn setSortDescriptorPrototype:[[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES selector:@selector (compare:)]];
 		}
-		
-		NSLog (@"smart sort");
 	}
 }
 
