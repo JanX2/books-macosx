@@ -6,9 +6,14 @@
 
 VERSION HISTORY:
 
+1.1 -- 2007-10-14 -- Changed editor field (custom) to editors (standard).
+                     Updated version numbers to match Books version style.
+
 0.4.1 -- 2007-10-13 -- Really removed empty issue details when a title does
                        not have an issue. Addressed an issue where titles
                        containing an ampersand would not be found.
+
+                       Released as 1.0.
 
 0.4 -- 2007-09-30 -- Now returns multiple covers when an issue has alternate
                      covers. Removed empty issue details when a title does not
@@ -38,7 +43,7 @@ Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
 
 
 __author__ = 'Jeff Cousens <books@aetherial.net>'
-__version__ = '0.4.1'
+__version__ = '1.1'
 __revision__ = '$LastChangedRevision$'
 __date__ = '$LastChangedDate$'
 __copyright__ = 'Copyright (c) 2007 Jeff Cousens'
@@ -109,7 +114,7 @@ def get_issue_details(title_id, issue_number):
         '<a href="creator.php?ID=1828">Liquid!</a>'
         >>> match[0]['letterer']
         '<a href="creator.php?ID=342">Comicraft</a><br><a href="creator.php?ID=74">Richard Starkings</a>'
-        >>> match[0]['editor']
+        >>> match[0]['editors']
         '<a href="creator.php?ID=232">Robert Harras - \\'Bob\\'</a><br><a href="creator.php?ID=90">Mark Powers</a>'
         >>> match[0]['artist']
         '<a href="creator.php?ID=407">Arthur Adams - \\'Art\\'</a>'
@@ -223,14 +228,14 @@ def get_people(text):
         >>> writer = '<a href="creator.php?ID=249">Chris Claremont</a>'
         >>> penciller = '<a href="creator.php?ID=1274">Leinil Francis Yu</a>'
         >>> letterer = '<a href="creator.php?ID=342">Comicraft</a><br><a href="creator.php?ID=74">Richard Starkings</a>'
-        >>> editor = '<a href="creator.php?ID=232">Robert Harras - \\'Bob\\'</a><br><a href="creator.php?ID=90">Mark Powers</a>'
+        >>> editors = '<a href="creator.php?ID=232">Robert Harras - \\'Bob\\'</a><br><a href="creator.php?ID=90">Mark Powers</a>'
         >>> get_people(writer)
         'Chris Claremont'
         >>> get_people(penciller)
         'Leinil Francis Yu'
         >>> get_people(letterer)
         'Comicraft; Richard Starkings'
-        >>> get_people(editor)
+        >>> get_people(editors)
         "Robert Harras - 'Bob'; Mark Powers"
         >>> 
     """
@@ -255,7 +260,7 @@ def merge_people(plist):
         >>> penciller = '<a href="creator.php?ID=1274">Leinil Francis Yu</a>'
         >>> inker = '<a href="creator.php?ID=494">Mark Morales</a>'
         >>> letterer = '<a href="creator.php?ID=342">Comicraft</a><br><a href="creator.php?ID=74">Richard Starkings</a>'
-        >>> editor = '<a href="creator.php?ID=232">Robert Harras - \\'Bob\\'</a><br><a href="creator.php?ID=90">Mark Powers</a>'
+        >>> editors = '<a href="creator.php?ID=232">Robert Harras - \\'Bob\\'</a><br><a href="creator.php?ID=90">Mark Powers</a>'
         >>> merge_people([get_people(writer)])
         'Chris Claremont'
         >>> merge_people([get_people(penciller), get_people(inker)])
@@ -263,7 +268,7 @@ def merge_people(plist):
         >>> merge_people([get_people(writer), get_people(penciller),
         ...               get_people(inker)])
         'Chris Claremont; Leinil Francis Yu; Mark Morales'
-        >>> merge_people([get_people(letterer), get_people(editor)])
+        >>> merge_people([get_people(letterer), get_people(editors)])
         "Comicraft; Richard Starkings; Robert Harras - 'Bob'; Mark Powers"
         >>> 
     """
@@ -292,7 +297,7 @@ def parse_books_quickfill():
           <field name="translators">This is the translator</field>
           <field name="illustrators">This is the ill ustrator</field>
           <field name="isbn">1234567890</field>
-          <field name="editors">This is the editor</field>
+          <field name="editors">These are the editors</field>
           <field name="id">0A9EB127-B801-4B86-83D0-5DB895E2B4BF</field>
           <field name="series">This is the series</field>
           <field name="authors">This is the author</field>
@@ -405,9 +410,9 @@ def print_output(title='', title_ids=[], issue_number=''):
                 elif match.has_key('inker') and match['inker']:
                     add_field(doc, book, 'illustrators',
                               merge_people([get_people(match['inker'])]))
-                if match.has_key('editor') and match['editor']:
-                    add_field(doc, book, 'editor',
-                              merge_people([get_people(match['editor'])]))
+                if match.has_key('editors') and match['editors']:
+                    add_field(doc, book, 'editors',
+                              merge_people([get_people(match['editors'])]))
                 if match.has_key('publisher') and match['publisher']:
                     add_field(doc, book, 'publisher', match['publisher'])
                 if (match.has_key('year') and match['year'] and
@@ -455,7 +460,7 @@ def query():
         >>> query()
         <?xml version="1.0" encoding="UTF-8"?>
         <importedData>
-          <List name="ComicBookDB Import" version="0.4.1">
+          <List name="ComicBookDB Import" version="1.1">
             <Book title="Groo the Wanderer">
               <field name="title">
                 Groo the Wanderer #3
@@ -507,7 +512,7 @@ def query():
         >>> query()
         <?xml version="1.0" encoding="UTF-8"?>
         <importedData>
-          <List name="ComicBookDB Import" version="0.4.1">
+          <List name="ComicBookDB Import" version="1.1">
             <Book title="X-Men">
               <field name="title">
                 X-Men #188
@@ -521,7 +526,7 @@ def query():
               <field name="illustrators">
                 Chris Bachalo; Jaime Mendoza; Tim Townsend
               </field>
-              <field name="editor">
+              <field name="editors">
                 Mike Marts
               </field>
               <field name="publisher">
@@ -550,7 +555,7 @@ def query():
               <field name="illustrators">
                 Chris Bachalo; Jaime Mendoza; Tim Townsend
               </field>
-              <field name="editor">
+              <field name="editors">
                 Mike Marts
               </field>
               <field name="publisher">
@@ -574,7 +579,7 @@ def query():
         >>> query()
         <?xml version="1.0" encoding="UTF-8"?>
         <importedData>
-          <List name="ComicBookDB Import" version="0.4.1">
+          <List name="ComicBookDB Import" version="1.1">
             <Book title="Cable &amp; Deadpool">
               <field name="title">
                 Cable &amp; Deadpool #45
@@ -588,7 +593,7 @@ def query():
               <field name="illustrators">
                 Reilly Brown; Jeremy Freeman
               </field>
-              <field name="editor">
+              <field name="editors">
                 Nicole Boose
               </field>
               <field name="publisher">
