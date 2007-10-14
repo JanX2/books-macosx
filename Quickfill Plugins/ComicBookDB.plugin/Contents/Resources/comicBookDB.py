@@ -7,6 +7,13 @@
 VERSION HISTORY:
 
 1.1 -- 2007-10-14 -- Changed editor field (custom) to editors (standard).
+                     Now uses the thumbnail for the cover image when no
+                     full-size image is present. Fixed an issue where Unicode
+                     characters in the title would prevent the title from
+                     being found. Now searches for non-numeric issue numbers
+                     (e.g., Dark Tower: The Gunslinger Born Guidebook). If no
+                     octothorp is present in the title, uses the last word
+                     (for non-numeric issues; e.g., Guidebook, Sketchbook).
                      Updated version numbers to match Books version style.
 
 0.4.1 -- 2007-10-13 -- Really removed empty issue details when a title does
@@ -62,12 +69,14 @@ INVALID = ['(Story is monochromatic)', '(Typeset)']
 
 TITLE = re.compile(
         '<a href="title.php\?ID=(\d+)">([^(]+) \((\d+)\)</a> \(([^)]+)\)')
-ISSUE = re.compile('<a href="issue.php\?ID=(\d+)">(\d+)</a><br>')
+ISSUE = re.compile('<a href="issue.php\?ID=(\d+)">(\w+)</a><br>')
 ALT_ISSUES = re.compile('<a\ href="issue.php\?ID=(\d+)">')
 PUBLISHER = re.compile(
     '<a\ href="publisher.php\?ID=\d+">(?P<publisher>[^<]*)</a><br>')
 IMAGES = re.compile(
     '<a\ href="(?P<cover>[^"]+)"\ target="_blank"><img\ src="(?P<thumb>[^"]+)"\ alt=""\ width="100"\ border="1"></a><br>')
+THUMB = re.compile(
+    '<img\ src="(?P<thumb>[^"]+)"\ alt=""\ width="100"\ border="1"><br>')
 ROLES = re.compile(
     '<strong>(?P<role>[^<]+)\(s\):</strong><br>(?P<value>.*?)(?:<br><br>|<br>\ \ \ \ </td>)')
 PUBDATE = re.compile(
@@ -88,6 +97,8 @@ def add_field(doc, parent, name, value):
         text = doc.createTextNode(value.decode('utf-8'))
     except UnicodeDecodeError:
         text = doc.createTextNode(value.decode('iso-8859-1'))
+    except AttributeError:
+        text = doc.createTextNode(value)
     field.appendChild(text)
     parent.appendChild(field)
 
@@ -148,6 +159,12 @@ def get_issue_details(title_id, issue_number):
             mod = mo.groupdict()
             match['cover'] = mod['cover']
             match['thumb'] = mod['thumb']
+        else:
+            mo = THUMB.search(issue_details)
+            if mo:
+                mod = mo.groupdict()
+                match['cover'] = mod['thumb']
+                match['thumb'] = mod['thumb']
         matches = ROLES.findall(issue_details)
         for m in matches:
             # match looks like ('role', 'value')
@@ -156,6 +173,11 @@ def get_issue_details(title_id, issue_number):
                     match['artist'] = m[1]
                 else:
                     match['artist'] += m[1]
+            elif m[0] == 'Editor':
+                if not match.has_key('editors'):
+                    match['editors'] = m[1]
+                else:
+                    match['editors'] += m[1]
             else:
                 if not match.has_key(m[0].lower()):
                     match[m[0].lower()] = m[1]
@@ -319,21 +341,30 @@ def parse_books_quickfill():
         ...   <field name="title">X-Men #100</field>
         ...   <field name="publisher">Marvel Comics</field>
         ... </Book>'''
+        >>> GUIDE = '''<Book>
+        ...   <field name="title">Dark Tower: The Gunslinger Born Guidebook</field>
+        ...   <field name="publisher">Marvel Comics</field>
+        ... </Book>'''
         >>> file = open('/tmp/books-quickfill.xml', 'w')
         >>> file.write(MAD)
         >>> file.close()
         >>> parse_books_quickfill()
-        ('MAD', '177', '')
+        ('MAD', '177', '', True)
         >>> file = open('/tmp/books-quickfill.xml', 'w')
         >>> file.write(GROO)
         >>> file.close()
         >>> parse_books_quickfill()
-        ('Groo the Wanderer', '3', 'Pacific Comics')
+        ('Groo the Wanderer', '3', 'Pacific Comics', True)
         >>> file = open('/tmp/books-quickfill.xml', 'w')
         >>> file.write(XMEN)
         >>> file.close()
         >>> parse_books_quickfill()
-        ('X-Men', '100', 'Marvel Comics')
+        ('X-Men', '100', 'Marvel Comics', True)
+        >>> file = open('/tmp/books-quickfill.xml', 'w')
+        >>> file.write(GUIDE)
+        >>> file.close()
+        >>> parse_books_quickfill()
+        ('Dark Tower: The Gunslinger Born', 'Guidebook', 'Marvel Comics', False)
         >>> import os
         >>> os.unlink('/tmp/books-quickfill.xml')
         >>> 
@@ -341,6 +372,7 @@ def parse_books_quickfill():
     title = ''
     issue_number = ''
     publisher = ''
+    octothorp = True
 
     tree = parse('/tmp/books-quickfill.xml')
     fields = tree.getElementsByTagName('field')
@@ -354,16 +386,23 @@ def parse_books_quickfill():
             except UnicodeEncodeError:
                 data = field.firstChild.data
             if field.getAttribute('name') == 'title':
-                (title, issue_number) = data.split('#')
-                title = title.rstrip()
+                if data.find('#') == -1:
+                    # No issue number; use last word as "issue number"
+                    title = data[:data.rfind(' ')]
+                    issue_number = data[data.rfind(' '):].lstrip()
+                    octothorp = False
+                else:
+                    # Issue number, split on octothorp
+                    (title, issue_number) = data.split('#')
+                    title = title.rstrip()
             elif field.getAttribute('name') == 'publisher':
                 publisher = data
             # elif field.getAttribute('name') == 'publishDate':
             #     (year, month, day) = data.split('-')
-    return (title, issue_number, publisher)
+    return (title, issue_number, publisher, octothorp)
 
 
-def print_output(title='', title_ids=[], issue_number=''):
+def print_output(title='', title_ids=[], issue_number='', octothorp=True):
     """Walks a list of title IDs, gets issue details and prints a Books XML
     import file.
 
@@ -394,7 +433,10 @@ def print_output(title='', title_ids=[], issue_number=''):
                 book = doc.createElement('Book')
                 book.setAttribute('title', title)
 
-                add_field(doc, book, 'title', '%s #%s' % (title, issue_number))
+                if octothorp:
+                    add_field(doc, book, 'title', '%s #%s' % (title, issue_number))
+                else:
+                    add_field(doc, book, 'title', '%s %s' % (title, issue_number))
                 add_field(doc, book, 'series', title)
                 if match.has_key('writer') and match['writer']:
                     add_field(doc, book, 'authors',
@@ -615,7 +657,7 @@ def query():
     """
     title_ids = []
 
-    (title, issue_number, publisher) = parse_books_quickfill()
+    (title, issue_number, publisher, octothorp) = parse_books_quickfill()
 
     title_list = get_page('http://www.comicbookdb.com/search.php?'
             'form_search=%s&form_searchtype=Title' % urllib.quote(title))
@@ -626,13 +668,18 @@ def query():
 
     for match in matches:
         # match looks like ('title_id', 'title', 'year', 'publisher')
-        if match[1] == title:
+        t = match[1]
+        try:
+            t = t.decode('utf-8')
+        except UnicodeDecodeError:
+            t = t.decode('iso-8859-1')
+        if t == title:
             title_ids.append(match[0])
 
     if not title_ids:
         print_output()
     else:
-        print_output(title, title_ids, issue_number)
+        print_output(title, title_ids, issue_number, octothorp)
 
 
 def test():
