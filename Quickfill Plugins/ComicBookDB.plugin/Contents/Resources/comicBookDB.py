@@ -6,6 +6,10 @@
 
 VERSION HISTORY:
 
+0.4.1 -- 2007-10-13 -- Really removed empty issue details when a title does
+                       not have an issue. Addressed an issue where titles
+                       containing an ampersand would not be found.
+
 0.4 -- 2007-09-30 -- Now returns multiple covers when an issue has alternate
                      covers. Removed empty issue details when a title does not
                      have an issue. Now merges roles when multiple role
@@ -34,7 +38,7 @@ Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
 
 
 __author__ = 'Jeff Cousens <jeffreyc@northwestern.edu>'
-__version__ = '0.4'
+__version__ = '0.4.1'
 __revision__ = '$LastChangedRevision$'
 __date__ = '$LastChangedDate$'
 __copyright__ = 'Copyright (c) 2007 Jeff Cousens'
@@ -172,7 +176,7 @@ def get_issue_id(title_id, issue_number):
         ['4223', '75579', '75586', '75584', '75578', '75581', '75577', '75583', '75582']
         >>> 
     """
-    issue_id = 0
+    issue_id = '0'
 
     issue_page = get_page(
             'http://www.comicbookdb.com/title.php?ID=%s' % title_id)
@@ -441,13 +445,17 @@ def query():
         ...   <field name="title">X-Men #188</field>
         ...   <field name="publisher">Marvel Comics</field>
         ... </Book>'''
+        >>> CABLE = '''<Book>
+        ...   <field name="title">Cable &amp; Deadpool #45</field>
+        ...   <field name="publisher">Marvel Comics</field>
+        ... </Book>'''
         >>> file = open('/tmp/books-quickfill.xml', 'w')
         >>> file.write(GROO)
         >>> file.close()
         >>> query()
         <?xml version="1.0" encoding="UTF-8"?>
         <importedData>
-          <List name="ComicBookDB Import" version="0.4">
+          <List name="ComicBookDB Import" version="0.4.1">
             <Book title="Groo the Wanderer">
               <field name="title">
                 Groo the Wanderer #3
@@ -499,7 +507,7 @@ def query():
         >>> query()
         <?xml version="1.0" encoding="UTF-8"?>
         <importedData>
-          <List name="ComicBookDB Import" version="0.4">
+          <List name="ComicBookDB Import" version="0.4.1">
             <Book title="X-Men">
               <field name="title">
                 X-Men #188
@@ -560,6 +568,44 @@ def query():
             </Book>
           </List>
         </importedData>
+        >>> file = open('/tmp/books-quickfill.xml', 'w')
+        >>> file.write(CABLE)
+        >>> file.close()
+        >>> query()
+        <?xml version="1.0" encoding="UTF-8"?>
+        <importedData>
+          <List name="ComicBookDB Import" version="0.4.1">
+            <Book title="Cable &amp; Deadpool">
+              <field name="title">
+                Cable &amp; Deadpool #45
+              </field>
+              <field name="series">
+                Cable &amp; Deadpool
+              </field>
+              <field name="authors">
+                Fabian Nicieza
+              </field>
+              <field name="illustrators">
+                Reilly Brown; Jeremy Freeman
+              </field>
+              <field name="editor">
+                Nicole Boose
+              </field>
+              <field name="publisher">
+                Marvel Comics
+              </field>
+              <field name="publishDate">
+                November 1, 2007
+              </field>
+              <field name="CoverImageURL">
+                http://www.comicbookdb.com/graphics/comic_graphics/1/213/106331_20070929112004_large.jpg
+              </field>
+              <field name="link">
+                http://www.comicbookdb.com/issue.php?ID=106331
+              </field>
+            </Book>
+          </List>
+        </importedData>
         >>> 
     """
     title_ids = []
@@ -568,6 +614,8 @@ def query():
 
     title_list = get_page('http://www.comicbookdb.com/search.php?'
             'form_search=%s&form_searchtype=Title' % urllib.quote(title))
+
+    title_list = title_list.replace('&amp;', '&')
 
     matches = TITLE.findall(title_list)
 
