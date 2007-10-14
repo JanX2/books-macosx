@@ -37,7 +37,7 @@ Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
 """
 
 
-__author__ = 'Jeff Cousens <jeffreyc@northwestern.edu>'
+__author__ = 'Jeff Cousens <books@aetherial.net>'
 __version__ = '0.4.1'
 __revision__ = '$LastChangedRevision$'
 __date__ = '$LastChangedDate$'
