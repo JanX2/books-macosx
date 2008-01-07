@@ -25,6 +25,9 @@ public class iPodExporter
 		
 		String text = object.toString ();
 		
+		if (text.indexOf(";") > -1)
+			text = text.split(";")[0];
+		
 		text = text.replace ('/', ' ').replace (':', ' ');
 		
 		if (text.length () > 255)
