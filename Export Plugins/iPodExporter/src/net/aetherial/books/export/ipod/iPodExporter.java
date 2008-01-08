@@ -1,19 +1,11 @@
 package net.aetherial.books.export.ipod;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.io.*;
+import java.util.*;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.*;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 public class iPodExporter 
@@ -87,7 +79,7 @@ public class iPodExporter
 				File bookFile = new File (root + "/" + normalize (bookDef.get ("listName")) + "/" + normalize (bookDef.get ("genre")) + "/" + normalize (bookDef.get ("title")));
 				bookFile.getParentFile ().mkdirs ();
 				
-				String bookString = "<title>" + bookDef.get ("title") + "</title>\n";
+				String bookString = "<?xml encoding=\"UTF8\"?>\n<title>" + bookDef.get ("title") + "</title>\n";
 				
 				for (int j = 0; j < mdFields.length; j++)
 				{
@@ -95,7 +87,7 @@ public class iPodExporter
 						bookString = bookString + bookDef.get (mdFields[j]) + "\n";
 				}
 	
-				FileWriter bookWriter = new FileWriter (bookFile);
+				Writer bookWriter = new OutputStreamWriter (new FileOutputStream (bookFile), "UTF-8");
 				bookWriter.write (bookString);
 				
 				bookWriter.close ();
