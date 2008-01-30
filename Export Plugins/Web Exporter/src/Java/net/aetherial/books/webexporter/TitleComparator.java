@@ -3,6 +3,7 @@ package net.aetherial.books.webexporter;
 import java.util.Comparator;
 import java.util.HashMap;
 
+@SuppressWarnings("unchecked")
 public class TitleComparator implements Comparator 
 {
 	private static TitleComparator instance;

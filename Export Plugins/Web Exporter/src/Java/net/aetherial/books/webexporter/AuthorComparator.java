@@ -2,6 +2,7 @@ package net.aetherial.books.webexporter;
 
 import java.util.*;
 
+@SuppressWarnings("unchecked")
 public class AuthorComparator implements Comparator
 {
 	public String getCompareString (String original)
