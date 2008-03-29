@@ -627,7 +627,7 @@ public class WebExporter
 			{
 				String collector = "";
 				
-				for (String v : value.split (";"))
+				for (String v : value.replaceAll (" ;", ";").split (";"))
 				{
 					if (key.equals ("authors"))
 					{
