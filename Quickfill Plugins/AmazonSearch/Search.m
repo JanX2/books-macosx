@@ -106,7 +106,7 @@
 	NSXMLElement * response = [search rootElement];
 	NSXMLElement * items = [[response elementsForName:@"Items"] lastObject];
 
-	NSArray * ignore = [NSArray arrayWithObjects:@"NumberOfItems", @"PackageDimensions", @"ProductGroup", @"Label", @"Studio", @"Manufacturer", @"ListPrice", nil];
+	NSArray * ignore = [NSArray arrayWithObjects:@"NumberOfItems", @"PackageDimensions", @"ProductGroup", @"Label", @"Studio", @"Manufacturer", nil];
 	
 	if (items != nil)
 	{
@@ -183,6 +183,27 @@
 						[illustrators appendString:[element stringValue]];
 					}
 				}
+				else if ([[element name] isEqual:@"ListPrice"])
+				{
+					NSMutableString * price = [NSMutableString string];
+					
+					NSString * formattedPrice = [[[element elementsForName:@"FormattedPrice"] lastObject] stringValue];
+					
+					if (formattedPrice != nil)
+					{
+						[price appendString:formattedPrice];
+					
+						NSString * currency = [[[element elementsForName:@"CurrencyCode"] lastObject] stringValue];
+						
+						if (currency != nil)
+						{
+							[price appendString:@" "];
+							[price appendString:currency];
+						}
+
+						[book setValue:price forKey:NSLocalizedString (@"List Price", nil)];
+					}
+				}
 				else
 					[book setValue:[element stringValue] forKey:[element name]];
 			}
@@ -197,6 +218,31 @@
 					NSMutableString * description = [NSMutableString stringWithString:@""];
 					[description appendFormat:@"%@: %@", [[[element children] objectAtIndex:0] stringValue], [[[element children] objectAtIndex:1] stringValue]];
 					[book setValue:description forKey:@"summary"];
+				}
+			}
+
+			atts = [Search descendantsForName:@"LowestNewPrice" element:itemElement];
+			if ([atts count] > 0)
+			{
+				element = [atts lastObject];
+				
+				NSMutableString * price = [NSMutableString string];
+					
+				NSString * formattedPrice = [[[element elementsForName:@"FormattedPrice"] lastObject] stringValue];
+					
+				if (formattedPrice != nil)
+				{
+					[price appendString:formattedPrice];
+					
+					NSString * currency = [[[element elementsForName:@"CurrencyCode"] lastObject] stringValue];
+						
+					if (currency != nil)
+					{
+						[price appendString:@" "];
+						[price appendString:currency];
+					}
+
+					[book setValue:price forKey:NSLocalizedString (@"Current Value", nil)];
 				}
 			}
 			
