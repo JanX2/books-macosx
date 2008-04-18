@@ -627,8 +627,10 @@ public class WebExporter
 			{
 				String collector = "";
 				
-				for (String v : value.replaceAll (" ;", ";").split (";"))
+				for (String v : value.split (";"))
 				{
+					v = v.trim ();
+					
 					if (key.equals ("authors"))
 					{
 						ArrayList<HashMap> list = (ArrayList) authors.get (v);
