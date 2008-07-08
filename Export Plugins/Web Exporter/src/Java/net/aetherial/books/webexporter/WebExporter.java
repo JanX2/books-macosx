@@ -279,13 +279,13 @@ public class WebExporter
 
 		// Check for author list sorting and sort appropriately
 
-		String[] commands = {"/usr/bin/defaults", "read", "net.aetherial.books.Books", "Sort People Names"};
+		/* String[] commands = {"/usr/bin/defaults", "read", "net.aetherial.books.Books", "Sort People Names"};
 
 		Process p = Runtime.getRuntime().exec (commands);
 
 		BufferedReader in = new BufferedReader (new InputStreamReader (p.getInputStream ()));
 
-		boolean authorSort = false;
+		boolean authorSort = true;
 
 		try 
 		{
@@ -309,6 +309,10 @@ public class WebExporter
 		}
 		else
 			Arrays.sort (authorList);
+		*/
+
+		Arrays.sort (authorList, new AuthorComparator ());
+		// Arrays.sort (authorList);
 
 		String htmlString = getHeader (2, "All Authors");
 
@@ -498,7 +502,7 @@ public class WebExporter
 					Element field = (Element) fieldElements.item (j);
 
 					String key = field.getAttribute ("name");
-					String value = field.getTextContent ();
+					String value = field.getTextContent ().trim ();
 
 					fields.put (key, value);
 				}
@@ -625,11 +629,16 @@ public class WebExporter
 
 			if (value != null && ! value.equals (""))
 			{
+				value = value.trim ();
+				
 				String collector = "";
 				
 				for (String v : value.split (";"))
 				{
 					v = v.trim ();
+					
+					if (v.startsWith ("Ê"))
+						v = v.substring (1);
 					
 					if (key.equals ("authors"))
 					{

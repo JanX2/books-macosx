@@ -7,9 +7,9 @@ public class AuthorComparator implements Comparator
 {
 	public String getCompareString (String original)
 	{
-		String newString = "" + original;
+		String newString = "" + original.toLowerCase ();
 		
-		String[] seperators = {";", ",", "/"};
+		String[] seperators = {";", ",", "/", " [", "]"};
 
 		for (int i = 0; i < seperators.length; i++)
 		{
@@ -26,11 +26,11 @@ public class AuthorComparator implements Comparator
 		if (index != -1)
 			newString = newString.substring (index + 1);
 
-		return newString;
+		return newString.trim ();
 	}
 
 	public int compare (Object one, Object two) 
 	{
-		return this.getCompareString (one.toString ()).compareToIgnoreCase (this.getCompareString (two.toString ()));
+		return this.getCompareString (one.toString ()).compareTo (this.getCompareString (two.toString ()));
 	}
 }
