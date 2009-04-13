@@ -69,10 +69,11 @@
 		NSString * scriptPath = [[NSBundle mainBundle] pathForResource:@"amazonScript" ofType:@"py"];
 
 		NSTask * task = [[NSTask alloc] init];
-	
+		
 		[task setLaunchPath:scriptPath];
 	
 		NSArray * arguments = [NSArray arrayWithObjects:localeArguments, fieldArguments, query, nil];
+		
 		[task setArguments:arguments];
 	
 		NSPipe * stdinPipe = [NSPipe pipe];
@@ -88,7 +89,7 @@
 		[task launch];
 
 		NSData * outData = [outHandle readDataToEndOfFile];
-	
+		
 		NSXMLDocument * xml = [[NSXMLDocument alloc] initWithData:outData options:NSXMLDocumentTidyXML error:nil];
 
 		[resultsDataSource addXMLContents:xml];

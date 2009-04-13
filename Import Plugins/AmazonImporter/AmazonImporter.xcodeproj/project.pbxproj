@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		384AA6590F93E78100413B2A /* ecs.py in Resources */ = {isa = PBXBuildFile; fileRef = 384AA6580F93E78100413B2A /* ecs.py */; };
 		38746559096D638B0016A59A /* import-plugin.icns in Resources */ = {isa = PBXBuildFile; fileRef = 38746558096D638B0016A59A /* import-plugin.icns */; };
 		387E37B9089823B20042DAD8 /* AmazonImporterAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 387E37B8089823B20042DAD8 /* AmazonImporterAppDelegate.m */; };
 		387E37BC089825330042DAD8 /* AmazonResultsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 387E37BA089825330042DAD8 /* AmazonResultsDataSource.m */; };
@@ -18,33 +19,6 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildStyle section */
-		4A9504CCFFE6A4B311CA0CBA /* Debug */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PREBINDING = NO;
-				ZERO_LINK = YES;
-			};
-			name = Debug;
-		};
-		4A9504CDFFE6A4B311CA0CBA /* Release */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				PREBINDING = NO;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
-/* End PBXBuildStyle section */
-
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -54,6 +28,7 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* AmazonImporter_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonImporter_Prefix.pch; sourceTree = "<group>"; };
+		384AA6580F93E78100413B2A /* ecs.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = ecs.py; sourceTree = "<group>"; };
 		38746558096D638B0016A59A /* import-plugin.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "import-plugin.icns"; sourceTree = "<group>"; };
 		387E37B7089823B20042DAD8 /* AmazonImporterAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AmazonImporterAppDelegate.h; sourceTree = "<group>"; };
 		387E37B8089823B20042DAD8 /* AmazonImporterAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AmazonImporterAppDelegate.m; sourceTree = "<group>"; };
@@ -138,6 +113,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				384AA6580F93E78100413B2A /* ecs.py */,
 				38746558096D638B0016A59A /* import-plugin.icns */,
 				38FA7252089AB4EB00BC6594 /* amazon.py */,
 				38FA7253089AB4EB00BC6594 /* amazonScript.py */,
@@ -170,17 +146,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = AmazonImporter_Prefix.pch;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				PRODUCT_NAME = AmazonImporter;
-				WRAPPER_EXTENSION = app;
-			};
 			dependencies = (
 			);
 			name = AmazonImporter;
@@ -195,15 +160,11 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 387E37B108981BD10042DAD8 /* Build configuration list for PBXProject "AmazonImporter" */;
-			buildSettings = {
-			};
-			buildStyles = (
-				4A9504CCFFE6A4B311CA0CBA /* Debug */,
-				4A9504CDFFE6A4B311CA0CBA /* Release */,
-			);
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* AmazonImporter */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* AmazonImporter */,
 			);
@@ -220,6 +181,7 @@
 				38FA7254089AB4EB00BC6594 /* amazon.py in Resources */,
 				38FA7255089AB4EB00BC6594 /* amazonScript.py in Resources */,
 				38746559096D638B0016A59A /* import-plugin.icns in Resources */,
+				384AA6590F93E78100413B2A /* ecs.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
