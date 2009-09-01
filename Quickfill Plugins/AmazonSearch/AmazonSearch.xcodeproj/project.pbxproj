@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		387BC4D0104C2A20007D2AFC /* hmac_sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 387BC4CC104C2A20007D2AFC /* hmac_sha2.c */; };
+		387BC4D1104C2A20007D2AFC /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 387BC4CE104C2A20007D2AFC /* sha2.c */; };
+		387BC4DF104C2B79007D2AFC /* NSDataAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 387BC4DE104C2B79007D2AFC /* NSDataAdditions.m */; };
 		38EB8C190D5A00AA003CE3B6 /* Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EB8C180D5A00AA003CE3B6 /* Search.m */; };
 		8DD76F9A0486AA7600D96B5E /* AmazonSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* AmazonSearch.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
@@ -30,6 +33,12 @@
 		08FB7796FE84155DC02AAC07 /* AmazonSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonSearch.m; sourceTree = "<group>"; };
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32A70AAB03705E1F00C91783 /* AmazonSearch_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonSearch_Prefix.pch; sourceTree = "<group>"; };
+		387BC4CC104C2A20007D2AFC /* hmac_sha2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hmac_sha2.c; sourceTree = "<group>"; };
+		387BC4CD104C2A20007D2AFC /* hmac_sha2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hmac_sha2.h; sourceTree = "<group>"; };
+		387BC4CE104C2A20007D2AFC /* sha2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha2.c; sourceTree = "<group>"; };
+		387BC4CF104C2A20007D2AFC /* sha2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha2.h; sourceTree = "<group>"; };
+		387BC4DD104C2B79007D2AFC /* NSDataAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataAdditions.h; sourceTree = "<group>"; };
+		387BC4DE104C2B79007D2AFC /* NSDataAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAdditions.m; sourceTree = "<group>"; };
 		38EB8C170D5A00AA003CE3B6 /* Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Search.h; sourceTree = "<group>"; };
 		38EB8C180D5A00AA003CE3B6 /* Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Search.m; sourceTree = "<group>"; };
 		8DD76FA10486AA7600D96B5E /* AmazonSearch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AmazonSearch; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,10 +71,16 @@
 		08FB7795FE84155DC02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				387BC4CC104C2A20007D2AFC /* hmac_sha2.c */,
+				387BC4CD104C2A20007D2AFC /* hmac_sha2.h */,
+				387BC4CE104C2A20007D2AFC /* sha2.c */,
+				387BC4CF104C2A20007D2AFC /* sha2.h */,
 				32A70AAB03705E1F00C91783 /* AmazonSearch_Prefix.pch */,
 				08FB7796FE84155DC02AAC07 /* AmazonSearch.m */,
 				38EB8C170D5A00AA003CE3B6 /* Search.h */,
 				38EB8C180D5A00AA003CE3B6 /* Search.m */,
+				387BC4DD104C2B79007D2AFC /* NSDataAdditions.h */,
+				387BC4DE104C2B79007D2AFC /* NSDataAdditions.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -139,6 +154,9 @@
 			files = (
 				8DD76F9A0486AA7600D96B5E /* AmazonSearch.m in Sources */,
 				38EB8C190D5A00AA003CE3B6 /* Search.m in Sources */,
+				387BC4D0104C2A20007D2AFC /* hmac_sha2.c in Sources */,
+				387BC4D1104C2A20007D2AFC /* sha2.c in Sources */,
+				387BC4DF104C2B79007D2AFC /* NSDataAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +194,9 @@
 		1DEB927908733DD40010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
@@ -186,10 +207,9 @@
 		1DEB927A08733DD40010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
