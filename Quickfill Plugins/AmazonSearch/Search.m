@@ -133,8 +133,12 @@
 
 		NSString * authors = [book valueForKey:@"authors"];
 		
-		if (authors != nil && ![authors isEqual:@""])
-			[power appendFormat:@" and author:\'%@\'", authors, nil];
+		if (authors != nil && ![authors isEqualToString:@""]) {
+			NSArray *authorsList = [authors componentsSeparatedByString:@";"];
+			for (NSString *author in authorsList) {
+				[power appendFormat:@" and author:\'%@\'", author, nil];
+			}
+		}
 
 		[parameters setValue:@"ItemSearch" forKey:@"Operation"];
 		[parameters setValue:@"Books" forKey:@"SearchIndex"];
