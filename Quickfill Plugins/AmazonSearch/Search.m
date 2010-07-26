@@ -394,7 +394,7 @@
 		[foundList addChild:bookElement];
 	}
 	
-	fprintf (stdout, [[found XMLStringWithOptions:(NSXMLNodeCompactEmptyElement | NSXMLNodePrettyPrint)] cStringUsingEncoding:NSUTF8StringEncoding]);
+	fprintf (stdout, "%s", [[found XMLStringWithOptions:(NSXMLNodeCompactEmptyElement | NSXMLNodePrettyPrint)] cStringUsingEncoding:NSUTF8StringEncoding]);
 }
 
 @end
