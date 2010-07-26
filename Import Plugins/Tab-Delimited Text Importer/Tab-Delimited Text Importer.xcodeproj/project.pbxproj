@@ -49,8 +49,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				38942F9C09D1976C00B14CB5 /* AppDelegate.m */,
 				38942F9D09D1976C00B14CB5 /* AppDelegate.h */,
+				38942F9C09D1976C00B14CB5 /* AppDelegate.m */,
 				386EB22609D2132600797299 /* TableDataSource.h */,
 				386EB22709D2132600797299 /* TableDataSource.m */,
 			);

@@ -10,7 +10,12 @@
 	IBOutlet id window;
 	
 	TableDataSource * dataSource;
+	
+	NSString *filePath;
 }
+
+- (NSString *)filePath;
+- (void)setFilePath:(NSString *)value;
 
 - (IBAction) doImport: (id) sender;
 - (void) tableViewSelectionDidChange: (NSNotification *) aNotification;

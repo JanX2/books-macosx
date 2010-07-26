@@ -2,6 +2,17 @@
 
 @implementation AppDelegate
 
+- (NSString *)filePath {
+    return [[filePath retain] autorelease];
+}
+
+- (void)setFilePath:(NSString *)value {
+    if (filePath != value) {
+        [filePath release];
+        filePath = [value copy];
+    }
+}
+
 - (IBAction) doImport: (id) sender
 {
 	NSArray * rows = [dataSource getRows];
@@ -59,20 +70,27 @@
 	[NSApp activateIgnoringOtherApps:YES];
 }
 
+- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+{
+	[self setFilePath:filename];
+}
+
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification
 {
-	NSOpenPanel * fileOpen = [NSOpenPanel openPanel];
-	
-	NSInteger results = [fileOpen runModalForTypes:[NSArray arrayWithObject:@"txt"]];
-
-	if (results == NSCancelButton)
-	{
-		[[NSApplication sharedApplication] terminate:nil];
+	if ([self filePath] == nil) {
+		NSOpenPanel * fileOpen = [NSOpenPanel openPanel];
 		
-		return;
+		NSInteger results = [fileOpen runModalForTypes:[NSArray arrayWithObject:@"txt"]];
+		
+		if (results == NSCancelButton)
+		{
+			[[NSApplication sharedApplication] terminate:nil];
+			
+			return;
+		}
+		
+		[self setFilePath:[[fileOpen filenames] objectAtIndex:0]];
 	}
-	
-	NSString * filePath = [[fileOpen filenames] objectAtIndex:0];
 	
 	NSMutableString * fileContents = [NSMutableString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:NULL];
 
