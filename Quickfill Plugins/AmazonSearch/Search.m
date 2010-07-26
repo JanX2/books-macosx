@@ -93,7 +93,7 @@
 								@"ecs.amazonaws.fr", @"fr", 
 								@"ecs.amazonaws.jp", @"jp", 
 								@"ecs.amazonaws.co.uk", @"uk", 
-								@"webservices.amazon.com", @"us", nil];
+								@"ecs.amazonaws.com", @"us", nil];
 								
 	NSMutableDictionary * book = [NSMutableDictionary dictionary];
 	
@@ -129,12 +129,12 @@
 	}
 	else
 	{
-		NSMutableString * power = [NSMutableString stringWithFormat:@"title:\"%@\"", [book valueForKey:@"title"]];
+		NSMutableString * power = [NSMutableString stringWithFormat:@"title:\'%@\'", [book valueForKey:@"title"]];
 
 		NSString * authors = [book valueForKey:@"authors"];
 		
 		if (authors != nil && ![authors isEqual:@""])
-			[power appendFormat:@" and author:\"%@\"", authors, nil];
+			[power appendFormat:@" and author:\'%@\'", authors, nil];
 
 		[parameters setValue:@"ItemSearch" forKey:@"Operation"];
 		[parameters setValue:@"Books" forKey:@"SearchIndex"];
