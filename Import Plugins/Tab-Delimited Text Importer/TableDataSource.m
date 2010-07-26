@@ -8,6 +8,8 @@
 
 #import "TableDataSource.h"
 
+#import "NSString+validKeyString.h"
+
 @implementation TableDataSource
 
 - (NSArray *)columnHeaders {
@@ -18,6 +20,17 @@
     if (columnHeaders != value) {
         [columnHeaders release];
         columnHeaders = [value copy];
+    }
+}
+
+- (NSArray *)columnKeys {
+    return [[columnKeys retain] autorelease];
+}
+
+- (void)setColumnKeys:(NSArray *)value {
+    if (columnKeys != value) {
+        [columnKeys release];
+        columnKeys = [value copy];
     }
 }
 
@@ -42,7 +55,16 @@
 		&& [[lines objectAtIndex:1] isEqualToString:@""]) {
 		
 		// This table has header info
-		[self setColumnHeaders:[[lines objectAtIndex:0] componentsSeparatedByString:@"\t"]];		
+		NSArray *rawColumnNames = [[[lines objectAtIndex:0] componentsSeparatedByString:@"\t"] mutableCopy];
+		[self setColumnHeaders:rawColumnNames];		
+		
+		NSMutableArray *columnNames = [NSMutableArray arrayWithCapacity:[rawColumnNames count]];
+		
+		for (NSString *columnName in rawColumnNames) {
+			[columnNames addObject:[columnName validKeyString]];
+		}
+		
+		[self setColumnKeys:columnNames];		
 		
 		firstValidLine = 2;
 	}
@@ -60,16 +82,15 @@
 		
 		for (NSUInteger j = 0; j < [columns count]; j++)
 		{
-			NSNumber * index = [NSNumber numberWithUnsignedInteger:j];
-
 			NSString * column = (NSString *) [columns objectAtIndex:j];
 
 			NSString *columnName;
-			if (columnHeaders == nil) {
+			if (columnKeys == nil) {
+				NSNumber *index = [NSNumber numberWithUnsignedInteger:j];
 				columnName = [index description];
 			}
 			else {
-				columnName = [columnHeaders objectAtIndex:j];
+				columnName = [columnKeys objectAtIndex:j];
 			}
 			
 			if (column != nil && ![column isEqualToString:@""])

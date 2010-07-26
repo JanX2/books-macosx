@@ -13,7 +13,9 @@
 {
 	NSMutableArray * rows;
 	NSMutableDictionary * mapping;
+	
 	NSArray *columnHeaders;
+	NSArray *columnKeys;
 	
 	NSUInteger count;
 }
@@ -22,6 +24,9 @@
 
 - (void) setStringContents: (NSString *) contents;
 - (NSUInteger) getColumnCount;
+
+- (NSArray *)columnKeys;
+- (void)setColumnKeys:(NSArray *)value;
 
 - (NSInteger) numberOfRowsInTableView: (NSTableView *) aTableView;
 - (id) tableView: (NSTableView *) aTableView objectValueForTableColumn: (NSTableColumn *) aTableColumn row: (NSInteger) rowIndex;

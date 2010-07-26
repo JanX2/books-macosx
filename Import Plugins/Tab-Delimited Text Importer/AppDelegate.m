@@ -29,7 +29,7 @@
 	NSUInteger i = 0;
 	for (i = 0; i < [rows count]; i++)
 	{
-		NSXMLElement * book = [[NSXMLElement alloc] initWithName:@"Book"];
+		NSXMLElement * book = [[[NSXMLElement alloc] initWithName:@"Book"] autorelease];
 
 		NSDictionary * entry = [rows objectAtIndex:i];
 		
@@ -44,7 +44,7 @@
 			
 			if (value != nil)
 			{
-				NSXMLElement * field = [[NSXMLElement alloc] initWithName:@"field"];
+				NSXMLElement * field = [[[NSXMLElement alloc] initWithName:@"field"] autorelease];
 
 				[field addAttribute:[NSXMLNode attributeWithName:@"name" stringValue:[key description]]];
 				[field setStringValue:[[value description] validXMLString]];
@@ -126,25 +126,29 @@
 	
 	[dataSource setStringContents:fileContents];
 	
+	NSArray *columnKeys = [dataSource columnKeys];
 	NSArray *columnHeaders = [dataSource columnHeaders];
 
 	NSUInteger columnCount = [dataSource getColumnCount];
 	
-	NSUInteger i = 0;
-	
-	for (i = 0; i < columnCount; i++)
+	NSString *columnKey;
+	NSString *columnName;
+
+	for (NSUInteger i = 0; i < columnCount; i++)
 	{
-		NSNumber * index = [NSNumber numberWithUnsignedInteger:i];
 		
 		NSString *columnName;
-		if (columnHeaders == nil) {
-			columnName = [index description];
+		if (columnKeys == nil) {
+			NSNumber * index = [NSNumber numberWithUnsignedInteger:i];
+			columnKey = [index description];
+			columnName = columnKey;
 		}
 		else {
+			columnKey = [columnKeys objectAtIndex:i];
 			columnName = [columnHeaders objectAtIndex:i];
 		}
 		
-		NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:columnName];
+		NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:columnKey];
 		[[column headerCell] setStringValue:columnName];
 		[column setEditable:NO];
 		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
