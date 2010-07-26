@@ -90,7 +90,7 @@
 			{
 		        NSRunAlertPanel (@"Error", @"Unable to determine file encoding. Check that your file is saved as a UTF-8, MacRoman, or ASCII document.", @"Quit", nil, nil);
 
-				[NSApp terminate];
+				[NSApp terminate:self];
 			}
 		}
 	}

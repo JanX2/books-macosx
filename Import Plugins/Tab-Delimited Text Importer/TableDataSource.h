@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface TableDataSource : NSObject 
+@interface TableDataSource : NSObject <NSComboBoxDataSource>
 {
 	NSMutableArray * rows;
 	NSMutableDictionary * mapping;
