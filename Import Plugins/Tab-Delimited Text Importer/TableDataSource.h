@@ -13,9 +13,12 @@
 {
 	NSMutableArray * rows;
 	NSMutableDictionary * mapping;
+	NSArray *columnHeaders;
 	
 	NSUInteger count;
 }
+
+- (NSArray *)columnHeaders;
 
 - (void) setStringContents: (NSString *) contents;
 - (NSUInteger) getColumnCount;

@@ -15,7 +15,6 @@
 }
 
 - (NSString *)filePath;
-- (void)setFilePath:(NSString *)value;
 
 - (IBAction) doImport: (id) sender;
 - (void) tableViewSelectionDidChange: (NSNotification *) aNotification;

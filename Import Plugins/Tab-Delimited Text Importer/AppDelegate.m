@@ -118,6 +118,8 @@
 	dataSource = [[TableDataSource alloc] init];
 	
 	[dataSource setStringContents:fileContents];
+	
+	NSArray *columnHeaders = [dataSource columnHeaders];
 
 	NSUInteger columnCount = [dataSource getColumnCount];
 	
@@ -127,8 +129,16 @@
 	{
 		NSNumber * index = [NSNumber numberWithUnsignedInteger:i];
 		
-		NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:[index description]];
-		[[column headerCell] setStringValue:[index description]];
+		NSString *columnName;
+		if (columnHeaders == nil) {
+			columnName = [index description];
+		}
+		else {
+			columnName = [columnHeaders objectAtIndex:i];
+		}
+		
+		NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:columnName];
+		[[column headerCell] setStringValue:columnName];
 		[column setEditable:NO];
 		[[column dataCell] setFont:[NSFont systemFontOfSize:11]];
 		

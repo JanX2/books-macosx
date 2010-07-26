@@ -10,6 +10,17 @@
 
 @implementation TableDataSource
 
+- (NSArray *)columnHeaders {
+    return [[columnHeaders retain] autorelease];
+}
+
+- (void)setColumnHeaders:(NSArray *)value {
+    if (columnHeaders != value) {
+        [columnHeaders release];
+        columnHeaders = [value copy];
+    }
+}
+
 - (void) setStringContents: (NSString *) contents
 {
 	count = 0;
@@ -23,8 +34,23 @@
 
 	NSArray * lines = [tabString componentsSeparatedByString:@"\n"];
 	
-	NSUInteger i = 0;
-	for (i = 0; i < [lines count]; i++)
+	NSUInteger linesCount = [lines count];
+	NSUInteger firstValidLine;
+
+	if ((linesCount > 3) 
+		&& ![[lines objectAtIndex:0] isEqualToString:@""] 
+		&& [[lines objectAtIndex:1] isEqualToString:@""]) {
+		
+		// This table has header info
+		[self setColumnHeaders:[[lines objectAtIndex:0] componentsSeparatedByString:@"\t"]];		
+		
+		firstValidLine = 2;
+	}
+	else {
+		firstValidLine = 0;
+	}
+	
+	for (NSUInteger i = firstValidLine; i < linesCount; i++)
 	{
 		NSString * line = [lines objectAtIndex:i];
 		
@@ -32,15 +58,22 @@
 		
 		NSArray * columns = [line componentsSeparatedByString:@"\t"];
 		
-		NSUInteger j = 0;
-		for (j = 0; j < [columns count]; j++)
+		for (NSUInteger j = 0; j < [columns count]; j++)
 		{
 			NSNumber * index = [NSNumber numberWithUnsignedInteger:j];
 
 			NSString * column = (NSString *) [columns objectAtIndex:j];
 
+			NSString *columnName;
+			if (columnHeaders == nil) {
+				columnName = [index description];
+			}
+			else {
+				columnName = [columnHeaders objectAtIndex:j];
+			}
+			
 			if (column != nil && ![column isEqualToString:@""])
-				[row setObject:[columns objectAtIndex:j] forKey:[index description]];
+				[row setObject:[columns objectAtIndex:j] forKey:columnName];
 			
 			if (count < (j + 1))
 				count = j + 1;
