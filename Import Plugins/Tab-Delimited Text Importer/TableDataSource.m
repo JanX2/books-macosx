@@ -23,7 +23,7 @@
 
 	NSArray * lines = [tabString componentsSeparatedByString:@"\n"];
 	
-	int i = 0;
+	NSUInteger i = 0;
 	for (i = 0; i < [lines count]; i++)
 	{
 		NSString * line = [lines objectAtIndex:i];
@@ -32,10 +32,10 @@
 		
 		NSArray * columns = [line componentsSeparatedByString:@"\t"];
 		
-		int j = 0;
+		NSUInteger j = 0;
 		for (j = 0; j < [columns count]; j++)
 		{
-			NSNumber * index = [NSNumber numberWithInt:j];
+			NSNumber * index = [NSNumber numberWithUnsignedInteger:j];
 
 			NSString * column = (NSString *) [columns objectAtIndex:j];
 
@@ -69,17 +69,17 @@
 	[mapping setValue:@"length" forKey:@"Length"];
 }
 
-- (int) getColumnCount
+- (NSUInteger) getColumnCount
 {
 	return count;
 }
 
-- (int) numberOfRowsInTableView: (NSTableView *) aTableView
+- (NSInteger) numberOfRowsInTableView: (NSTableView *) aTableView
 {
 	return [rows count];
 }
 
-- (id) tableView: (NSTableView *) aTableView objectValueForTableColumn: (NSTableColumn *) aTableColumn row: (int) rowIndex
+- (id) tableView: (NSTableView *) aTableView objectValueForTableColumn: (NSTableColumn *) aTableColumn row: (NSInteger) rowIndex
 {
 	NSDictionary * entry = [rows objectAtIndex:rowIndex];
 	
@@ -98,7 +98,7 @@
 	if ([oldKey isEqual:newKey])
 		return;
 		
-	int i = 0;
+	NSInteger i = 0;
 
 	NSString * mapKey = [mapping objectForKey:newKey];
 	

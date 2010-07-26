@@ -14,14 +14,14 @@
 	NSMutableArray * rows;
 	NSMutableDictionary * mapping;
 	
-	int count;
+	NSUInteger count;
 }
 
 - (void) setStringContents: (NSString *) contents;
-- (int) getColumnCount;
+- (NSUInteger) getColumnCount;
 
-- (int) numberOfRowsInTableView: (NSTableView *) aTableView;
-- (id) tableView: (NSTableView *) aTableView objectValueForTableColumn: (NSTableColumn *) aTableColumn row: (int) rowIndex;
+- (NSInteger) numberOfRowsInTableView: (NSTableView *) aTableView;
+- (id) tableView: (NSTableView *) aTableView objectValueForTableColumn: (NSTableColumn *) aTableColumn row: (NSInteger) rowIndex;
 
 - (void) replaceKey: (NSObject *) oldKey withKey:(NSObject *) newKey;
 - (NSArray *) getRows;

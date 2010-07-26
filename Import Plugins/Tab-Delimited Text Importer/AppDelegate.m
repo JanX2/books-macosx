@@ -125,7 +125,7 @@
 	
 	for (i = 0; i < columnCount; i++)
 	{
-		NSNumber * index = [NSNumber numberWithInt:i];
+		NSNumber * index = [NSNumber numberWithUnsignedInteger:i];
 		
 		NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:[index description]];
 		[[column headerCell] setStringValue:[index description]];
