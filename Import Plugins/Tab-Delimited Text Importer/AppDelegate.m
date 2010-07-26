@@ -1,5 +1,7 @@
 #import "AppDelegate.h"
 
+#import "NSString+validXMLString.h"
+
 @implementation AppDelegate
 
 - (NSString *)filePath {
@@ -19,6 +21,7 @@
 	
 	NSXMLElement * root = [[NSXMLElement alloc] initWithName:@"importedData"];
 	NSXMLDocument * xml = [[NSXMLDocument alloc] initWithRootElement:root];
+	[xml setCharacterEncoding:@"UTF-8"];
 	
 	NSXMLElement * collection = [[NSXMLElement alloc] initWithName:@"List"];
 	[collection addAttribute:[NSXMLNode attributeWithName:@"name" stringValue:@"Tab-Delimited Text"]];
@@ -44,7 +47,7 @@
 				NSXMLElement * field = [[NSXMLElement alloc] initWithName:@"field"];
 
 				[field addAttribute:[NSXMLNode attributeWithName:@"name" stringValue:[key description]]];
-				[field setStringValue:[value description]];
+				[field setStringValue:[[value description] validXMLString]];
 				
 				[book addChild:field];
 			}
@@ -55,9 +58,13 @@
 
 	[root addChild:collection];
 
-	NSString * xmlString = [xml description];
+#if 0
+	NSData *xmlData = [xml XMLDataWithOptions:NSXMLNodePrettyPrint];
+#else
+	NSData *xmlData = [xml XMLData];
+#endif
 	
-	const char * utfData = [xmlString cStringUsingEncoding:NSUTF8StringEncoding];
+	const char * utfData = [xmlData bytes];
 	
 	fprintf (stdout, "%s", utfData);
 	fflush (stdout);

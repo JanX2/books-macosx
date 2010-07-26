@@ -10,6 +10,7 @@
 		380EA0630C524E1C00B36ED8 /* import-plugin.icns in Resources */ = {isa = PBXBuildFile; fileRef = 380EA0620C524E1C00B36ED8 /* import-plugin.icns */; };
 		386EB22809D2132600797299 /* TableDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 386EB22709D2132600797299 /* TableDataSource.m */; };
 		38942F9E09D1976C00B14CB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 38942F9C09D1976C00B14CB5 /* AppDelegate.m */; };
+		3D4B291C11FE020600AA0C51 /* NSString+validXMLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B291B11FE020600AA0C51 /* NSString+validXMLString.m */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -30,6 +31,8 @@
 		386EB22709D2132600797299 /* TableDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableDataSource.m; sourceTree = "<group>"; };
 		38942F9C09D1976C00B14CB5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		38942F9D09D1976C00B14CB5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3D4B291A11FE020600AA0C51 /* NSString+validXMLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+validXMLString.h"; sourceTree = "<group>"; };
+		3D4B291B11FE020600AA0C51 /* NSString+validXMLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+validXMLString.m"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Tab-Delimited Text Importer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tab-Delimited Text Importer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -53,6 +56,8 @@
 				38942F9C09D1976C00B14CB5 /* AppDelegate.m */,
 				386EB22609D2132600797299 /* TableDataSource.h */,
 				386EB22709D2132600797299 /* TableDataSource.m */,
+				3D4B291A11FE020600AA0C51 /* NSString+validXMLString.h */,
+				3D4B291B11FE020600AA0C51 /* NSString+validXMLString.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				38942F9E09D1976C00B14CB5 /* AppDelegate.m in Sources */,
 				386EB22809D2132600797299 /* TableDataSource.m in Sources */,
+				3D4B291C11FE020600AA0C51 /* NSString+validXMLString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
