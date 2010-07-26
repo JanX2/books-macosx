@@ -12,7 +12,7 @@
 	NSXMLElement * collection = [[NSXMLElement alloc] initWithName:@"List"];
 	[collection addAttribute:[NSXMLNode attributeWithName:@"name" stringValue:@"Tab-Delimited Text"]];
 
-	int i = 0;
+	NSUInteger i = 0;
 	for (i = 0; i < [rows count]; i++)
 	{
 		NSXMLElement * book = [[NSXMLElement alloc] initWithName:@"Book"];
@@ -21,7 +21,7 @@
 		
 		NSArray * keys = [entry allKeys];
 		
-		int j = 0;
+		NSUInteger j = 0;
 		for (j = 0; j < [keys count]; j++)
 		{
 			NSObject * key = [keys objectAtIndex:j];
@@ -63,7 +63,7 @@
 {
 	NSOpenPanel * fileOpen = [NSOpenPanel openPanel];
 	
-	int results = [fileOpen runModalForTypes:[NSArray arrayWithObject:@"txt"]];
+	NSInteger results = [fileOpen runModalForTypes:[NSArray arrayWithObject:@"txt"]];
 
 	if (results == NSCancelButton)
 	{
@@ -101,9 +101,9 @@
 	
 	[dataSource setStringContents:fileContents];
 
-	int columnCount = [dataSource getColumnCount];
+	NSUInteger columnCount = [dataSource getColumnCount];
 	
-	int i = 0;
+	NSUInteger i = 0;
 	
 	for (i = 0; i < columnCount; i++)
 	{
@@ -159,9 +159,9 @@
 		
 	NSTableColumn * column = [columns objectAtIndex:[table selectedColumn]];
 
-	int count = 0;
+	NSUInteger count = 0;
 	
-	int i = 0;
+	NSUInteger i = 0;
 	for (i = 0; i < [columns count]; i++)
 	{
 		NSTableColumn * oldColumn = [columns objectAtIndex:i];
