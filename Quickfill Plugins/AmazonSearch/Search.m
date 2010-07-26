@@ -97,8 +97,8 @@
 								
 	NSMutableDictionary * book = [NSMutableDictionary dictionary];
 	
-	NSXMLDocument * doc = [[NSXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[xml stringByExpandingTildeInPath]] 
-															   options:NSXMLDocumentTidyXML error:nil];
+	NSXMLDocument * doc = [[[NSXMLDocument alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[xml stringByExpandingTildeInPath]] 
+															   options:NSXMLDocumentTidyXML error:nil] autorelease];
 	
 	NSXMLElement * root = [doc rootElement];
 	
@@ -153,9 +153,14 @@
 		[canonical appendFormat:@"%@=%@", key, [parameters valueForKey:key]];
 	}
 	
-	NSString *escStr = (NSString *) CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef) canonical, NULL, 
-																			(CFStringRef) @"+\"',:", kCFStringEncodingUTF8);
-
+	CFStringRef escCFStr = CFURLCreateStringByAddingPercentEscapes(NULL, 
+																			(CFStringRef) canonical, 
+																			NULL, 
+																			(CFStringRef) @"+\"',:", 
+																			kCFStringEncodingUTF8);
+	CFMakeCollectable(escCFStr);
+	NSString *escStr = [(NSString *)escCFStr autorelease];
+	
 	NSString * toSign = [NSString stringWithFormat:@"GET\n%@\n/onca/xml\n%@", [endpoints valueForKey:locale], escStr];
 	
 	NSMutableArray * books = [NSMutableArray array];
@@ -167,9 +172,9 @@
 	
 	NSLog (@"<!-- %@ -->", amazonString);
 	
-	NSXMLDocument * search = [[NSXMLDocument alloc] initWithContentsOfURL:[NSURL URLWithString:amazonString] 
+	NSXMLDocument * search = [[[NSXMLDocument alloc] initWithContentsOfURL:[NSURL URLWithString:amazonString] 
 																  options:NSXMLDocumentTidyXML 
-																	error:nil];
+																	error:nil] autorelease];
 
 	NSXMLElement * response = [search rootElement];
 	NSXMLElement * items = [[response elementsForName:@"Items"] lastObject];
@@ -361,9 +366,9 @@
 	
 	// print out books
 	
-	NSXMLDocument * found = [[NSXMLDocument alloc] initWithXMLString:
+	NSXMLDocument * found = [[[NSXMLDocument alloc] initWithXMLString:
 								@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><importedData><List name=\"Amazon Import\" /></importedData>"
-								 options:NSXMLDocumentTidyXML error:nil];
+								 options:NSXMLDocumentTidyXML error:nil] autorelease];
 								 
 	NSXMLElement * foundList = (NSXMLElement *) [[found rootElement] childAtIndex:0];
 	
@@ -371,13 +376,13 @@
 	NSDictionary * dict = nil;
 	while (dict = [bookIter nextObject])
 	{
-		NSXMLElement * bookElement = [[NSXMLElement alloc] initWithName:@"Book"];
+		NSXMLElement * bookElement = [[[NSXMLElement alloc] initWithName:@"Book"] autorelease];
 		
 		NSEnumerator * keyIter = [[dict allKeys] objectEnumerator];
 		NSString * key = nil;
 		while (key = [keyIter nextObject])
 		{
-			NSXMLElement * field = [[NSXMLElement alloc] initWithName:@"field"];
+			NSXMLElement * field = [[[NSXMLElement alloc] initWithName:@"field"] autorelease];
 			
 			[field addAttribute:[NSXMLNode attributeWithName:@"name" stringValue:key]];
 			
